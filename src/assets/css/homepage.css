@@ -364,7 +364,7 @@
   letter-spacing: 1px;
 }
 
-/* Why Choose Us Section */
+/* Why Choose Us Section - Original Design */
 .why-choose-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 100%);
   padding: 100px 0;
@@ -483,7 +483,21 @@
 .feature-description {
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
+  margin-bottom: 20px;
   text-transform: none;
+}
+
+.feature-link {
+  color: #169fd5;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.feature-card:hover .feature-link {
+  transform: translateX(10px);
 }
 
 .stats-grid {
@@ -536,6 +550,10 @@
   .hero-subtitle {
     font-size: 1.1rem;
   }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -569,6 +587,11 @@
     font-size: 2rem;
   }
   
+  .section-description {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+  
   .features-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -576,6 +599,10 @@
   
   .feature-card {
     padding: 30px 20px;
+  }
+  
+  .feature-title {
+    font-size: 1.3rem;
   }
   
   .stats-grid {
@@ -610,5 +637,9 @@
   
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
   }
 }

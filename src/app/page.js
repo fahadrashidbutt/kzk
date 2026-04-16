@@ -37,137 +37,76 @@ export default function Home() {
     
     createParticles();
 
-    // Hero Section - Scroll-triggered repeating animation
-    const heroTimeline = gsap.timeline({ paused: true });
-    
-    heroTimeline
-      .fromTo(badgeRef.current,
-        { 
-          y: -50, 
-          opacity: 0,
-          scale: 0.8
-        },
-        { 
-          y: 0, 
-          opacity: 1, 
-          scale: 1,
-          duration: 1, 
-          ease: "back.out(1.2)" 
-        }
+    // Create a reusable timeline for hero animations
+    const createHeroTimeline = () => {
+      const tl = gsap.timeline();
+      tl.fromTo(badgeRef.current,
+        { y: -50, opacity: 0, scale: 0.8 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.2)" }
       )
       .fromTo(titleRef.current,
-        { 
-          y: 100, 
-          opacity: 0,
-          rotationX: -90,
-          skewY: 10
-        },
-        { 
-          y: 0, 
-          opacity: 1, 
-          rotationX: 0,
-          skewY: 0,
-          duration: 1.2, 
-          ease: "power4.out" 
-        },
-        "-=0.5"
-      )
-      .fromTo(subtitleRef.current,
-        { 
-          y: 50, 
-          opacity: 0,
-          scale: 0.95
-        },
-        { 
-          y: 0, 
-          opacity: 1, 
-          scale: 1,
-          duration: 0.8, 
-          ease: "power3.out" 
-        },
-        "-=0.6"
-      )
-      .fromTo(ctaRef.current,
-        { 
-          scale: 0, 
-          opacity: 0,
-          rotation: -10
-        },
-        { 
-          scale: 1, 
-          opacity: 1, 
-          rotation: 0,
-          duration: 0.8, 
-          ease: "back.out(1.7)" 
-        },
+        { y: 100, opacity: 0, rotationX: -90 },
+        { y: 0, opacity: 1, rotationX: 0, duration: 1, ease: "power4.out" },
         "-=0.4"
       )
-      .fromTo(".hero-stats .stat-item",
-        { 
-          y: 100, 
-          opacity: 0,
-          scale: 0.8
-        },
-        { 
-          y: 0, 
-          opacity: 1, 
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power3.out" 
-        },
+      .fromTo(subtitleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+        "-=0.5"
+      )
+      .fromTo(ctaRef.current,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" },
         "-=0.3"
       )
-      .fromTo(scrollIndicatorRef.current,
-        { 
-          opacity: 0,
-          y: -20
-        },
-        { 
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out"
-        },
+      .fromTo(".hero-stats .stat-item",
+        { y: 80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" },
         "-=0.2"
+      )
+      .fromTo(scrollIndicatorRef.current,
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+        "-=0.1"
       );
-    
-    // Reset function for hero animations
-    const resetHeroAnimation = () => {
-      heroTimeline.progress(0);
-      gsap.set(badgeRef.current, { y: -50, opacity: 0, scale: 0.8 });
-      gsap.set(titleRef.current, { y: 100, opacity: 0, rotationX: -90, skewY: 10 });
-      gsap.set(subtitleRef.current, { y: 50, opacity: 0, scale: 0.95 });
-      gsap.set(ctaRef.current, { scale: 0, opacity: 0, rotation: -10 });
-      gsap.set(".hero-stats .stat-item", { y: 100, opacity: 0, scale: 0.8 });
-      gsap.set(scrollIndicatorRef.current, { opacity: 0, y: -20 });
+      return tl;
     };
-    
-    // Play hero animation when entering viewport
+
+    let currentTimeline = createHeroTimeline();
+    currentTimeline.play();
+
+    // Hero Section - Complete scroll-triggered repeating animation
     ScrollTrigger.create({
       trigger: heroRef.current,
-      start: "top 80%",
-      end: "bottom 20%",
+      start: "top bottom",
+      end: "bottom top",
       onEnter: () => {
-        heroTimeline.play();
-      },
-      onLeaveBack: () => {
-        heroTimeline.reverse();
+        if (currentTimeline.progress() === 0 || currentTimeline.progress() === 1) {
+          currentTimeline = createHeroTimeline();
+          currentTimeline.play();
+        } else if (currentTimeline.progress() < 0.5) {
+          currentTimeline.play();
+        }
       },
       onLeave: () => {
-        heroTimeline.reverse();
+        currentTimeline.reverse();
       },
       onEnterBack: () => {
-        heroTimeline.play();
+        if (currentTimeline.progress() === 0) {
+          currentTimeline = createHeroTimeline();
+          currentTimeline.play();
+        } else {
+          currentTimeline.play();
+        }
+      },
+      onLeaveBack: () => {
+        if (currentTimeline.progress() > 0.5) {
+          currentTimeline.reverse();
+        } else {
+          currentTimeline.play();
+        }
       }
     });
-    
-    // Also play hero animation on initial load
-    setTimeout(() => {
-      if (window.scrollY === 0) {
-        heroTimeline.play();
-      }
-    }, 100);
 
     // Parallax effect on mouse move
     const handleMouseMove = (e) => {
@@ -206,8 +145,7 @@ export default function Home() {
     
     window.addEventListener("mousemove", handleMouseMove);
     
-    // Why Choose Us Section - Scroll-triggered animations that reverse on scroll up
-    // Section header animation
+    // Why Choose Us Section - Original animations
     ScrollTrigger.create({
       trigger: whyChooseRef.current,
       start: "top 80%",
@@ -254,12 +192,11 @@ export default function Home() {
       }
     });
     
-    // Set initial state for section header
     gsap.set(".section-tag", { y: 50, opacity: 0 });
     gsap.set(".section-title", { y: 50, opacity: 0 });
     gsap.set(".section-description", { y: 50, opacity: 0 });
     
-    // Cards Animation with scroll trigger - reverses on scroll up
+    // Cards Animation with scroll trigger
     cardsRef.current.forEach((card, index) => {
       ScrollTrigger.create({
         trigger: card,
@@ -297,7 +234,7 @@ export default function Home() {
       });
     });
     
-    // Numbers Animation with scroll trigger - reverses on scroll up
+    // Numbers Animation with scroll trigger
     numbersRef.current.forEach((number) => {
       const target = parseInt(number.getAttribute("data-target"));
       let animationRunning = false;
@@ -486,7 +423,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Why Choose Us Section - Original Design */}
       <section className="why-choose-section" ref={whyChooseRef}>
         <div className="container">
           <div className="section-header">
@@ -509,6 +446,7 @@ export default function Home() {
                 We make the perfect and best quality websites to divert the masses' attention towards you. 
                 Our team joins the head and discusses everything (whether it's a header or footer) while developing a website.
               </p>
+              <div className="feature-link">Learn More →</div>
             </div>
             
             <div className="feature-card" ref={addToCardsRef}>
@@ -517,6 +455,7 @@ export default function Home() {
               <p className="feature-description">
                 The KZK LLC customer care team is always actively responding to our potential customers and resolving their issues within minutes.
               </p>
+              <div className="feature-link">Learn More →</div>
             </div>
             
             <div className="feature-card" ref={addToCardsRef}>
@@ -526,6 +465,7 @@ export default function Home() {
                 Here, we guarantee our customers that the cold sales must convert into profit and pull cash for you. 
                 So with us, there is no issue of 0% desired result or downfall of your business in the market.
               </p>
+              <div className="feature-link">Learn More →</div>
             </div>
             
             <div className="feature-card" ref={addToCardsRef}>
@@ -535,6 +475,7 @@ export default function Home() {
                 Our support team is the one thing that makes us a popular agency in the market. 
                 Because our team will never go into sleeping or rest mode, however, they are always up to give support to the business owners.
               </p>
+              <div className="feature-link">Learn More →</div>
             </div>
             
             <div className="feature-card" ref={addToCardsRef}>
@@ -543,6 +484,7 @@ export default function Home() {
               <p className="feature-description">
                 The KZK LLC keeps a separate team in its directory, that focus on the technical details to bring a return for your investments.
               </p>
+              <div className="feature-link">Learn More →</div>
             </div>
             
             <div className="feature-card" ref={addToCardsRef}>
@@ -552,6 +494,7 @@ export default function Home() {
                 All the team is experienced and certified. No one does fluff or use spammy ways, which in saves you from the long term harms. 
                 So you can trust us related to the team members.
               </p>
+              <div className="feature-link">Learn More →</div>
             </div>
           </div>
           

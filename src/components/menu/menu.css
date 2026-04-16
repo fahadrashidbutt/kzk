@@ -103,14 +103,14 @@
 }
 
 .menu-link-item {
-  width: max-content;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  width: auto;
   margin-bottom: 0.5em;
+  overflow: visible;
 }
 
 .menu-link-item-holder {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .menu-link-item-holder a,
@@ -123,6 +123,7 @@
   transition: all 0.3s ease;
   display: inline-block;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .menu-link-item-holder a:hover,
@@ -202,6 +203,7 @@
   .menu-link-item-holder a,
   .menu-link-item-holder span {
     font-size: 40px;
+    white-space: normal;
   }
   
   .back-link {
