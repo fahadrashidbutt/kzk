@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  line-height: 1.6;
+  background: #0a0a0a;
+  overflow-x: hidden;
+}
+
+/* Headings - Montserrat */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Paragraphs, buttons, descriptions - Open Sans */
+p, button, .description, .desc, .button {
+  font-family: var(--font-open-sans), 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #169fd5;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0d6d92;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+  background: #169fd5;
+  color: #fff;
+}
+
+::-moz-selection {
+  background: #169fd5;
+  color: #fff;
+}
