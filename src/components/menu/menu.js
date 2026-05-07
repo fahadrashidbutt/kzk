@@ -1,215 +1,183 @@
-"use client"
-import React, { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
-import "./menu.css"
-import Image from 'next/image';
-import LogoKZK from "../../assets/images/logo/logo.webp"
-import { gsap } from 'gsap';
-import { useGSAP } from '@gsap/react';
+"use client";
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import LogoKZK from "../../assets/images/logo/logo.webp";
+import "./menu.css";
 
-const menuLinks = [
-    { path: "/", label: "Home" },
-    { path: "/about-us", label: "About Us" },
-    { path: "/portfolio", label: "Portfolio" },
-    { path: "/google-my-business", label: "Google My Business" },
-    { path: "/contact-us", label: "Contact Us" },
+const navLinks = [
+  { path: "/", label: "Home" },
+  { path: "/about-us", label: "About Us" },
+  { path: "/portfolio", label: "Portfolio" },
+  { path: "/google-my-business", label: "Google My Business" },
+  { path: "/contact-us", label: "Contact" },
 ];
 
 const servicesLinks = [
-    { path: "/services/web-development", label: "Web Development" },
-    { path: "/services/app-development", label: "App Development" },
-    { path: "/services/seo", label: "SEO" },
-    { path: "/services/digital-marketing", label: "Digital Marketing" },
-    { path: "/services/designing", label: "Designing" },
+  { path: "/services/web-development", label: "Web Development" },
+  { path: "/services/app-development", label: "App Development" },
+  { path: "/services/seo", label: "SEO" },
+  { path: "/services/digital-marketing", label: "Digital Marketing" },
+  { path: "/services/designing", label: "Designing" },
 ];
 
 const Menu = () => {
-    const MenuContainer = useRef(null);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [showServices, setShowServices] = useState(false);
-    const tl = useRef(null);
-    const servicesTl = useRef(null);
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-        if (!isMenuOpen) {
-            setShowServices(false);
-        }
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setServicesOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
     };
+  }, [mobileOpen]);
 
-    const showServicesMenu = () => {
-        servicesTl.current = gsap.timeline();
-        servicesTl.current
-            .to(".menu-links", {
-                opacity: 0,
-                y: -20,
-                duration: 0.3,
-                ease: "power2.inOut",
-            })
-            .to(".menu-links", {
-                display: "none",
-                duration: 0,
-            })
-            .set(".services-links", {
-                display: "block",
-            })
-            .fromTo(".services-links",
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
-            );
-        setShowServices(true);
+  useEffect(() => {
+    const onClickAway = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setServicesOpen(false);
+      }
     };
+    if (servicesOpen) document.addEventListener("mousedown", onClickAway);
+    return () => document.removeEventListener("mousedown", onClickAway);
+  }, [servicesOpen]);
 
-    const hideServicesMenu = () => {
-        servicesTl.current = gsap.timeline();
-        servicesTl.current
-            .to(".services-links", {
-                opacity: 0,
-                y: -20,
-                duration: 0.3,
-                ease: "power2.inOut",
-            })
-            .to(".services-links", {
-                display: "none",
-                duration: 0,
-            })
-            .set(".menu-links", {
-                display: "block",
-            })
-            .fromTo(".menu-links",
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
-            );
-        setShowServices(false);
-    };
+  const isActive = (p) =>
+    p === "/" ? pathname === "/" : pathname.startsWith(p);
+  const isServicesActive = pathname.startsWith("/services");
 
-    useGSAP(() => {
-        gsap.set(".menu-link-item-holder", { y: 75 });
-        gsap.set(".menu-overlay", { visibility: "visible" });
-        gsap.set(".services-links", { display: "none" });
-        
-        tl.current = gsap.timeline({ paused: true })
-            .to(".menu-overlay", {
-                duration: 1.25,
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                ease: "power4.inOut",
-            })
-            .to(".menu-link-item-holder", {
-                y: 0,
-                duration: 1,
-                stagger: 0.1,
-                ease: "power4.inOut",
-            }, "-=0.75");
-    }, { scope: MenuContainer });
+  return (
+    <header className={`kzk-nav ${scrolled ? "kzk-nav-scrolled" : ""}`}>
+      <div className="kzk-nav-inner">
+        <Link href="/" className="kzk-nav-logo" aria-label="KZK Services home">
+          <Image src={LogoKZK} alt="KZK Services" width={56} height={56} priority />
+          <span className="kzk-nav-logo-text">
+            KZK<span className="kzk-nav-logo-x">×</span>SERVICES
+          </span>
+        </Link>
 
-    useEffect(() => {
-        if (isMenuOpen) {
-            tl.current.play();
-            document.body.style.overflow = 'hidden';
-        } else {
-            tl.current.reverse();
-            document.body.style.overflow = 'unset';
-            setTimeout(() => {
-                setShowServices(false);
-                gsap.set(".menu-links", { display: "block", opacity: 1, y: 0 });
-                gsap.set(".services-links", { display: "none" });
-            }, 500);
-        }
-        
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [isMenuOpen]);
+        <nav className="kzk-nav-links" aria-label="Main">
+          {navLinks.slice(0, 1).map((l) => (
+            <Link
+              key={l.path}
+              href={l.path}
+              className={`kzk-nav-link ${isActive(l.path) ? "is-active" : ""}`}
+            >
+              {l.label}
+            </Link>
+          ))}
 
-    return (
-        <div className='menu-container' ref={MenuContainer}>
-            <div className='menu-bar'>
-                <div className='menu-logo'>
-                    <Link href="/">
-                        <Image src={LogoKZK} alt='Logo' width={60} height={60} />
-                    </Link>
-                </div>
-                <div className='menu-open' onClick={toggleMenu}>
-                    <p>MENU</p>
-                </div>
+          <div
+            className={`kzk-nav-dd ${servicesOpen ? "is-open" : ""}`}
+            ref={dropdownRef}
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <button
+              type="button"
+              className={`kzk-nav-link kzk-nav-dd-trigger ${
+                isServicesActive ? "is-active" : ""
+              }`}
+              aria-haspopup="true"
+              aria-expanded={servicesOpen}
+              onClick={() => setServicesOpen((v) => !v)}
+            >
+              Services
+              <svg width="10" height="10" viewBox="0 0 12 8" fill="none">
+                <path
+                  d="M1 1.5L6 6.5L11 1.5"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <div className="kzk-nav-dd-panel" role="menu">
+              {servicesLinks.map((s) => (
+                <Link
+                  key={s.path}
+                  href={s.path}
+                  className="kzk-nav-dd-link"
+                  role="menuitem"
+                >
+                  {s.label}
+                </Link>
+              ))}
             </div>
-            
-            <div className='menu-overlay'>
-                <div className='menu-overlay-bar'>
-                    <div className='menu-logo'>
-                        <Link href="/">
-                            <Image src={LogoKZK} alt='Logo' width={60} height={60} />
-                        </Link>
-                    </div>
-                    <div className='menu-close' onClick={toggleMenu}>
-                        <p>CLOSE</p>
-                    </div>
-                </div>
-                
-                <div className='menu-close-icon' onClick={toggleMenu}>
-                    <p>✕</p>
-                </div>
-                
-                <div className='menu-copy'>
-                    {/* Main Menu Links */}
-                    <div className='menu-links'>
-                        {menuLinks.map((link, index) => (
-                            <div className='menu-link-item' key={index}>
-                                <div className='menu-link-item-holder' onClick={toggleMenu}>
-                                    <Link href={link.path} className='menu-link'>
-                                        {link.label}
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
-                        <div className='menu-link-item'>
-                            <div className='menu-link-item-holder' onClick={showServicesMenu}>
-                                <span className='menu-link services-link'>
-                                    Services <span className='arrow-icon'>→</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+          </div>
 
-                    {/* Services Submenu Links */}
-                    <div className='services-links'>
-                        <div className='menu-link-item'>
-                            <div className='menu-link-item-holder' onClick={hideServicesMenu}>
-                                <span className='menu-link back-link'>
-                                    ← Back
-                                </span>
-                            </div>
-                        </div>
-                        {servicesLinks.map((link, index) => (
-                            <div className='menu-link-item' key={index}>
-                                <div className='menu-link-item-holder' onClick={toggleMenu}>
-                                    <Link href={link.path} className='menu-link'>
-                                        {link.label}
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    
-                    <div className='menu-info'>
-                        <div className='menu-info-col'>
-                            <a href='#' target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href='#' target="_blank" rel="noopener noreferrer">Facebook</a>
-                            <a href='#' target="_blank" rel="noopener noreferrer">Google</a>
-                        </div>
-                        <div className='menu-info-col'>
-                            <p>sales@kzkservices.com</p>
-                            <p>(443) 529-8897</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className='menu-preview'>
-                    <p>View ShowReel →</p>
-                </div>
-            </div>
+          {navLinks.slice(1).map((l) => (
+            <Link
+              key={l.path}
+              href={l.path}
+              className={`kzk-nav-link ${isActive(l.path) ? "is-active" : ""}`}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="kzk-nav-cta">
+          <Link href="/contact-us" className="kzk-nav-pay">
+            Pay Now
+          </Link>
+          <button
+            type="button"
+            className={`kzk-nav-burger ${mobileOpen ? "is-open" : ""}`}
+            aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            <span /><span /><span />
+          </button>
         </div>
-    );
+      </div>
+
+      {/* Mobile overlay */}
+      <div className={`kzk-nav-mobile ${mobileOpen ? "is-open" : ""}`}>
+        <nav className="kzk-nav-mobile-list" aria-label="Mobile">
+          {navLinks.slice(0, 1).map((l) => (
+            <Link key={l.path} href={l.path} className="kzk-nav-mobile-link">
+              {l.label}
+            </Link>
+          ))}
+          <div className="kzk-nav-mobile-group">
+            <div className="kzk-nav-mobile-grouptitle">Services</div>
+            {servicesLinks.map((s) => (
+              <Link key={s.path} href={s.path} className="kzk-nav-mobile-sublink">
+                {s.label}
+              </Link>
+            ))}
+          </div>
+          {navLinks.slice(1).map((l) => (
+            <Link key={l.path} href={l.path} className="kzk-nav-mobile-link">
+              {l.label}
+            </Link>
+          ))}
+          <Link href="/contact-us" className="kzk-nav-mobile-pay">
+            Pay Now
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
 };
 
 export default Menu;

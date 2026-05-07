@@ -1,0 +1,553 @@
+/* Shared inner-page styles — prefixed with .ip- to avoid colliding with
+   global homepage CSS. Uses cyan-blue/navy theme tokens from globals.css. */
+
+.ip-page {
+  background: var(--bg-base);
+  color: var(--text);
+  position: relative;
+  min-height: 100vh;
+}
+
+/* === Hero === */
+.ip-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--grad-bg);
+  padding: 160px 24px 90px;
+}
+.ip-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.ip-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.45;
+}
+.ip-orb-1 {
+  width: 480px;
+  height: 480px;
+  background: var(--accent);
+  top: -180px;
+  left: -120px;
+  animation: ipFloat 16s ease-in-out infinite;
+}
+.ip-orb-2 {
+  width: 380px;
+  height: 380px;
+  background: var(--accent-2);
+  bottom: -160px;
+  right: -120px;
+  animation: ipFloat 20s ease-in-out -4s infinite reverse;
+}
+.ip-orb-3 {
+  width: 320px;
+  height: 320px;
+  background: var(--accent-3);
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.25;
+  animation: ipFloat 18s ease-in-out -8s infinite;
+}
+@keyframes ipFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -40px) scale(1.08); }
+}
+.ip-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(24, 161, 215, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 161, 215, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.6;
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+}
+
+.ip-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.ip-badge {
+  display: inline-block;
+  background: rgba(24, 161, 215, 0.1);
+  color: var(--accent-2);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  border: 1px solid rgba(24, 161, 215, 0.25);
+  animation: ipFadeUp 0.7s ease both;
+}
+.ip-title {
+  font-size: clamp(2.4rem, 5.4vw, 4.6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin-bottom: 22px;
+  color: #fff;
+  animation: ipFadeUp 0.7s ease 0.1s both;
+}
+.ip-grad {
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.ip-subtitle {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 740px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+  animation: ipFadeUp 0.7s ease 0.2s both;
+}
+.ip-hero-actions {
+  display: inline-flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: ipFadeUp 0.7s ease 0.3s both;
+}
+.ip-btn-primary,
+.ip-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  text-decoration: none;
+}
+.ip-btn-primary {
+  background: var(--grad-accent);
+  color: #fff;
+  box-shadow: 0 6px 25px rgba(24, 161, 215, 0.3);
+}
+.ip-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(24, 161, 215, 0.45);
+  gap: 14px;
+}
+.ip-btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+}
+.ip-btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent-2);
+  transform: translateY(-3px);
+}
+
+@keyframes ipFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === Section base === */
+.ip-section {
+  position: relative;
+  padding: 110px 24px;
+}
+.ip-section-alt {
+  background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-soft) 100%);
+}
+.ip-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.ip-section-head {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 60px;
+}
+.ip-section-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  background: rgba(24, 161, 215, 0.08);
+  border: 1px solid rgba(24, 161, 215, 0.2);
+  padding: 6px 14px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+.ip-section-title {
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  color: #fff;
+}
+.ip-section-text {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* === Generic card grid === */
+.ip-grid {
+  display: grid;
+  gap: 22px;
+}
+.ip-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.ip-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.ip-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+.ip-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 22px;
+  padding: 34px 28px;
+  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  overflow: hidden;
+}
+.ip-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--grad-accent-soft);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.ip-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-accent);
+  box-shadow: 0 20px 50px rgba(24, 161, 215, 0.14);
+}
+.ip-card:hover::before { opacity: 1; }
+.ip-card > * { position: relative; z-index: 1; }
+
+.ip-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--grad-accent);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(24, 161, 215, 0.3);
+}
+.ip-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #fff;
+}
+.ip-card-text {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
+
+/* === Stats === */
+.ip-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 60px;
+}
+.ip-stat {
+  text-align: center;
+  padding: 30px 18px;
+  border-radius: 18px;
+  background: rgba(24, 161, 215, 0.04);
+  border: 1px solid rgba(24, 161, 215, 0.15);
+  transition: all 0.3s ease;
+}
+.ip-stat:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(24, 161, 215, 0.15);
+}
+.ip-stat-num {
+  font-size: 2.6rem;
+  font-weight: 900;
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.ip-stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+/* === Process / steps === */
+.ip-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  position: relative;
+}
+.ip-step {
+  position: relative;
+  padding: 30px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  transition: all 0.35s ease;
+}
+.ip-step:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-accent);
+}
+.ip-step-num {
+  font-size: 3.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, rgba(24, 161, 215, 0.7), rgba(24, 161, 215, 0.1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.ip-step-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.ip-step-text {
+  color: var(--text-subtle);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Bullet list */
+.ip-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+.ip-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.ip-bullets li::before {
+  content: "✓";
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--grad-accent);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(24, 161, 215, 0.3);
+}
+
+/* === Two col split === */
+.ip-split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.ip-split-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  background: rgba(24, 161, 215, 0.08);
+  border: 1px solid rgba(24, 161, 215, 0.2);
+  padding: 6px 14px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.ip-split-title {
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  font-weight: 800;
+  margin-bottom: 18px;
+  line-height: 1.2;
+  color: #fff;
+}
+.ip-split-text {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+.ip-split-visual {
+  position: relative;
+  aspect-ratio: 5/4;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--grad-accent-soft);
+  border: 1px solid var(--border-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ip-split-visual::before,
+.ip-split-visual::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+.ip-split-visual::before {
+  width: 220px;
+  height: 220px;
+  background: rgba(24, 161, 215, 0.55);
+  top: -60px;
+  left: -40px;
+}
+.ip-split-visual::after {
+  width: 180px;
+  height: 180px;
+  background: rgba(62, 181, 224, 0.45);
+  bottom: -50px;
+  right: -30px;
+}
+.ip-split-visual-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 100px;
+  opacity: 0.95;
+  color: #fff;
+  filter: drop-shadow(0 10px 40px rgba(24, 161, 215, 0.6));
+}
+
+/* === FAQ === */
+.ip-faq {
+  display: grid;
+  gap: 14px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.ip-faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 22px 26px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.ip-faq-item:hover {
+  border-color: var(--border-accent);
+}
+.ip-faq-item[open] {
+  border-color: rgba(24, 161, 215, 0.5);
+  background: rgba(24, 161, 215, 0.05);
+}
+.ip-faq-summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+}
+.ip-faq-summary::-webkit-details-marker { display: none; }
+.ip-faq-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(24, 161, 215, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-2);
+  font-size: 18px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  flex-shrink: 0;
+}
+.ip-faq-item[open] .ip-faq-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: #fff;
+}
+.ip-faq-answer {
+  color: var(--text-muted);
+  margin-top: 14px;
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+/* === Tech Pills === */
+.ip-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ip-pill {
+  background: rgba(24, 161, 215, 0.08);
+  border: 1px solid rgba(24, 161, 215, 0.2);
+  color: var(--accent-3);
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+.ip-pill:hover {
+  background: rgba(24, 161, 215, 0.18);
+  transform: translateY(-2px);
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .ip-grid-3, .ip-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .ip-stats, .ip-steps { grid-template-columns: repeat(2, 1fr); }
+  .ip-split { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 600px) {
+  .ip-hero { min-height: 60vh; padding: 150px 20px 70px; }
+  .ip-section { padding: 80px 20px; }
+  .ip-grid-3, .ip-grid-4, .ip-grid-2 { grid-template-columns: 1fr; }
+  .ip-stats { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .ip-steps { grid-template-columns: 1fr; }
+  .ip-section-head { margin-bottom: 40px; }
+}

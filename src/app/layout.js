@@ -2,6 +2,7 @@
 import { Open_Sans, Montserrat } from "next/font/google";
 import "./globals.css";
 import Menu from "@/components/menu/menu";
+import Footer from "@/components/footer/Footer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,10 +23,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${openSans.variable}`}>
-      <body>
+    <html lang="en" data-scroll-behavior="smooth" className={`${montserrat.variable} ${openSans.variable}`}>
+      <body suppressHydrationWarning>
         <Menu />
         {children}
+        <Footer />
       </body>
     </html>
   );

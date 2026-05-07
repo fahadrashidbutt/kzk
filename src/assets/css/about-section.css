@@ -1,0 +1,389 @@
+/* === Unique About — editorial / magazine layout === */
+.about-uniq {
+  position: relative;
+  padding: 130px 0;
+  background: var(--bg-base);
+  overflow: hidden;
+}
+.about-uniq-bg-deco {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 18% 25%, rgba(24, 161, 215, 0.18), transparent 45%),
+    radial-gradient(ellipse at 85% 78%, rgba(62, 181, 224, 0.12), transparent 45%);
+  pointer-events: none;
+  z-index: 0;
+}
+.about-uniq-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(24, 161, 215, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 161, 215, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Big background watermark "EST. 2013" */
+.about-uniq-watermark {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(6rem, 14vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -4px;
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  z-index: 0;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.about-uniq-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* === Header === */
+.about-uniq-head {
+  text-align: center;
+  margin-bottom: 90px;
+}
+.about-uniq-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 24px;
+}
+.about-uniq-eyebrow-line {
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.about-uniq-heading {
+  font-size: clamp(2.4rem, 5.8vw, 4.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  color: #fff;
+}
+.about-uniq-heading > span {
+  display: block;
+  overflow: hidden;
+}
+.about-uniq-grad {
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* === Hero — image with floating badges === */
+.about-uniq-hero {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto 130px;
+  padding: 70px 90px 90px;
+}
+.about-uniq-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(24, 161, 215, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55),
+              0 0 0 1px rgba(24, 161, 215, 0.08);
+  z-index: 1;
+}
+.about-uniq-image-inner {
+  position: absolute;
+  inset: -10% 0;
+  width: 100%;
+}
+.about-uniq-image-inner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-uniq-image-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(24, 161, 215, 0.18), transparent 50%),
+    linear-gradient(180deg, transparent 60%, rgba(5, 8, 16, 0.5));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Floating stat badges — overlapping image edges at varied positions */
+.about-uniq-badge {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 22px;
+  min-width: 145px;
+  background: rgba(13, 19, 32, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(24, 161, 215, 0.32);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+.about-uniq-badge-tl { top: 14%; left: 0; }
+.about-uniq-badge-tr { top: 28%; right: 0; }
+.about-uniq-badge-br { bottom: 14%; right: 18%; }
+.about-uniq-badge-num {
+  font-size: 1.9rem;
+  font-weight: 900;
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.about-uniq-badge-suffix {
+  font-size: 0.7em;
+}
+.about-uniq-badge-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+/* "Available for new projects" pill — bottom-left of image */
+.about-uniq-floating-tag {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px;
+  background: rgba(13, 19, 32, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(24, 161, 215, 0.4);
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.about-uniq-floating-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 10px #4ade80;
+  animation: aboutUniqPulse 2s ease-in-out infinite;
+}
+@keyframes aboutUniqPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+
+/* === Story — 2-column magazine === */
+.about-uniq-story {
+  display: grid;
+  grid-template-columns: 0.85fr 1.6fr;
+  gap: 80px;
+  max-width: 1100px;
+  margin: 0 auto 110px;
+  padding-top: 80px;
+  border-top: 1px solid var(--border-subtle);
+}
+.about-uniq-story-head {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+.about-uniq-story-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 18px;
+}
+.about-uniq-story-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+.about-uniq-story-body {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.about-uniq-story-p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  margin: 0;
+}
+/* Drop cap on the first paragraph */
+.about-uniq-story-p-first::first-letter {
+  font-size: 4em;
+  font-weight: 800;
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  float: left;
+  line-height: 0.85;
+  margin: 6px 12px 0 0;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+}
+
+/* === DNA — capability cards === */
+.about-uniq-dna {
+  text-align: center;
+}
+.about-uniq-dna-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 36px;
+}
+.about-uniq-caps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  text-align: left;
+}
+.about-uniq-cap {
+  position: relative;
+  padding: 32px 26px 28px;
+  background: rgba(13, 19, 32, 0.55);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+.about-uniq-cap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--grad-accent-soft);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.about-uniq-cap:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(24, 161, 215, 0.14);
+}
+.about-uniq-cap:hover::after { opacity: 1; }
+.about-uniq-cap > * {
+  position: relative;
+  z-index: 1;
+}
+.about-uniq-cap-num {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 18px;
+}
+.about-uniq-cap-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--grad-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 22px rgba(24, 161, 215, 0.35);
+}
+.about-uniq-cap-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.about-uniq-cap-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.about-uniq-cap-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .about-uniq { padding: 100px 0; }
+  .about-uniq-hero { padding: 50px 30px 60px; margin-bottom: 90px; }
+  .about-uniq-badge-tl { top: 6%; left: -8px; }
+  .about-uniq-badge-tr { top: 22%; right: -8px; }
+  .about-uniq-badge-br { bottom: 8%; right: 8%; }
+  .about-uniq-floating-tag { bottom: 30px; }
+  .about-uniq-story {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 60px;
+  }
+  .about-uniq-story-head { position: static; }
+  .about-uniq-caps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .about-uniq { padding: 80px 0; }
+  .about-uniq-watermark { font-size: 4.5rem; top: 30px; }
+  .about-uniq-container { padding: 0 20px; }
+  .about-uniq-head { margin-bottom: 60px; }
+  .about-uniq-heading { letter-spacing: -1px; }
+  .about-uniq-hero { padding: 30px 12px 50px; margin-bottom: 70px; }
+  .about-uniq-image { aspect-ratio: 4/3; border-radius: 20px; }
+  .about-uniq-badge { padding: 12px 14px; min-width: 0; }
+  .about-uniq-badge-num { font-size: 1.3rem; }
+  .about-uniq-badge-label { font-size: 9px; letter-spacing: 1px; }
+  .about-uniq-badge-tl { top: 4%; left: -4px; }
+  .about-uniq-badge-tr { top: 14%; right: -4px; }
+  .about-uniq-badge-br { bottom: 4%; right: 4%; }
+  .about-uniq-floating-tag { bottom: 14px; padding: 8px 14px; font-size: 10px; letter-spacing: 0.2px; }
+  .about-uniq-story {
+    margin-bottom: 70px;
+    padding-top: 50px;
+  }
+  .about-uniq-story-p-first::first-letter { font-size: 3em; }
+  .about-uniq-caps { grid-template-columns: 1fr; }
+}

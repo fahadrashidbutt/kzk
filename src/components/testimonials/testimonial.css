@@ -1,0 +1,273 @@
+/* === Testimonials — draggable slider, container-left aligned, right-bleed === */
+.kzk-tt-section {
+  position: relative;
+  padding: 110px 0 90px;
+  background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-soft) 100%);
+  overflow: hidden;
+}
+.kzk-tt-bg-deco {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(24, 161, 215, 0.18), transparent 50%),
+    radial-gradient(ellipse at 90% 100%, rgba(62, 181, 224, 0.1), transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+.kzk-tt-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Header */
+.kzk-tt-head {
+  margin-bottom: 50px;
+  max-width: 720px;
+}
+.kzk-tt-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 18px;
+}
+.kzk-tt-eyebrow-line {
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.kzk-tt-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+  line-height: 1.1;
+}
+.kzk-tt-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* Marquee outer — left-aligned with container, right-bleed to viewport */
+.kzk-tt-marquee-outer {
+  position: relative;
+  z-index: 1;
+  /* Left edge aligns with container's content-left */
+  margin-left: max(20px, calc((100vw - 1320px) / 2 + 32px));
+  /* Width fills to viewport right (block default) */
+  overflow: hidden;
+  /* Right-side fade only (no left fade) */
+  mask-image: linear-gradient(90deg, #000 0%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 92%, transparent);
+}
+.kzk-tt-marquee {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  /* Allow vertical page scroll while we capture horizontal swipes */
+  touch-action: pan-y;
+}
+.kzk-tt-marquee.is-dragging {
+  cursor: grabbing;
+}
+.kzk-tt-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  padding: 24px 0 28px;
+  will-change: transform;
+}
+
+/* Card base — white panel on dark page */
+.kzk-tt-card {
+  flex-shrink: 0;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 28px 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  color: #14202f;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.32);
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+              box-shadow 0.4s ease;
+  pointer-events: auto;
+}
+.kzk-tt-marquee:not(.is-dragging) .kzk-tt-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 55px rgba(24, 161, 215, 0.32);
+}
+
+/* Star tiles */
+.kzk-tt-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.kzk-tt-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 3px;
+}
+.kzk-tt-star svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Card head: stars + date */
+.kzk-tt-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.kzk-tt-date {
+  font-size: 12px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.kzk-tt-card-title {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #14202f;
+  line-height: 1.3;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+.kzk-tt-card-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #4a5568;
+  flex: 1;
+  margin: 0;
+}
+.kzk-tt-card-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #14202f;
+  margin-top: auto;
+  padding-top: 4px;
+  position: relative;
+}
+.kzk-tt-card-name::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+/* Summary "Excellent / Based on 200+ reviews" card */
+.kzk-tt-summary {
+  align-items: center;
+  text-align: center;
+  padding: 32px 28px 28px;
+  gap: 12px;
+  justify-content: center;
+  background: linear-gradient(160deg, #ffffff 0%, #f4fbff 100%);
+  border: 1px solid rgba(24, 161, 215, 0.18);
+}
+.kzk-tt-summary-label {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #14202f;
+  letter-spacing: -0.3px;
+}
+.kzk-tt-summary-meta {
+  font-size: 13px;
+  color: #4a5568;
+}
+.kzk-tt-summary-meta strong {
+  color: #14202f;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.kzk-tt-summary-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--accent);
+  background: rgba(24, 161, 215, 0.08);
+  border: 1px solid rgba(24, 161, 215, 0.22);
+  border-radius: 30px;
+  margin-top: 8px;
+}
+.kzk-tt-summary-brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+}
+.kzk-tt-summary-brand-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Drag hint below marquee */
+.kzk-tt-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 8px 16px;
+  background: rgba(24, 161, 215, 0.06);
+  border: 1px solid rgba(24, 161, 215, 0.18);
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--accent-2);
+}
+.kzk-tt-hint svg:first-child {
+  animation: kzkTtHintLeft 1.6s ease-in-out infinite;
+}
+.kzk-tt-hint svg:last-child {
+  animation: kzkTtHintRight 1.6s ease-in-out infinite;
+}
+@keyframes kzkTtHintLeft {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
+}
+@keyframes kzkTtHintRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kzk-tt-section { padding: 80px 0 60px; }
+  .kzk-tt-container { padding: 0 20px; }
+  .kzk-tt-head { margin-bottom: 36px; }
+  .kzk-tt-marquee-outer {
+    margin-left: 20px;
+  }
+  .kzk-tt-card { width: 290px; padding: 24px 22px 22px; gap: 12px; }
+  .kzk-tt-summary { padding: 26px 22px 22px; }
+  .kzk-tt-star { width: 22px; height: 22px; }
+  .kzk-tt-star svg { width: 13px; height: 13px; }
+  .kzk-tt-marquee-track { gap: 16px; padding: 18px 0 22px; }
+}

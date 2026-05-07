@@ -1,3 +1,26 @@
+:root {
+  /* Theme tokens — cyan-blue + dark navy palette */
+  --bg-base: #050810;
+  --bg-soft: #0a0f1a;
+  --bg-card: rgba(255, 255, 255, 0.025);
+  --bg-card-hover: rgba(24, 161, 215, 0.06);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(24, 161, 215, 0.25);
+
+  --accent: #18a1d7;
+  --accent-2: #3eb5e0;
+  --accent-3: #7dd3ee;
+  --accent-glow: rgba(24, 161, 215, 0.45);
+
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --text-subtle: rgba(255, 255, 255, 0.45);
+
+  --grad-accent: linear-gradient(135deg, #18a1d7, #3eb5e0 60%, #7dd3ee);
+  --grad-accent-soft: linear-gradient(135deg, rgba(24, 161, 215, 0.18), rgba(62, 181, 224, 0.05));
+  --grad-bg: radial-gradient(ellipse at top, rgba(24, 161, 215, 0.18), transparent 60%), #050810;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,56 +31,36 @@
 body {
   font-family: var(--font-montserrat), 'Montserrat', sans-serif;
   line-height: 1.6;
-  background: #0a0a0a;
+  background: var(--bg-base);
+  color: var(--text);
   overflow-x: hidden;
 }
 
-/* Headings - Montserrat */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-montserrat), 'Montserrat', sans-serif;
   font-weight: 700;
   line-height: 1.2;
+  color: var(--text);
 }
 
-/* Paragraphs, buttons, descriptions - Open Sans */
 p, button, .description, .desc, .button {
   font-family: var(--font-open-sans), 'Open Sans', sans-serif;
 }
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-}
-
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0d1320; }
 ::-webkit-scrollbar-thumb {
-  background: #169fd5;
+  background: var(--accent);
   border-radius: 5px;
 }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-2); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #0d6d92;
-}
+html { scroll-behavior: smooth; }
 
-/* Smooth Scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Selection Color */
-::selection {
-  background: #169fd5;
-  color: #fff;
-}
-
-::-moz-selection {
-  background: #169fd5;
-  color: #fff;
-}
+::selection { background: var(--accent); color: #fff; }
+::-moz-selection { background: var(--accent); color: #fff; }
