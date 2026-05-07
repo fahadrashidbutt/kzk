@@ -37,10 +37,12 @@ const data = {
     { icon: "⚡", title: "Motion That Matters", text: "Micro-interactions and transitions that feel intentional, not decorative." },
   ],
   deliverables: [
-    { icon: "◐", title: "Brand Identity", text: "Logo, type, color, voice, photography direction and full guidelines." },
-    { icon: "▤", title: "UI/UX Design", text: "Web and app interfaces with research, wireframes and prototypes." },
-    { icon: "◰", title: "Design Systems", text: "Reusable component libraries with tokens, docs and Figma libraries." },
-    { icon: "▦", title: "Marketing Design", text: "Social creative, ads, decks, illustration and motion graphics." },
+    { icon: "◐", title: "Brand Identity", text: "Logo, typography, color, voice, photography direction and full brand guidelines — a system, not just a logo." },
+    { icon: "▤", title: "UI/UX Design", text: "Web and app interfaces with user research, wireframes, hi-fi prototypes and developer-ready Figma hand-off." },
+    { icon: "◰", title: "Design Systems", text: "Reusable component libraries with tokens, variants, accessibility specs and documentation in Figma + Storybook." },
+    { icon: "▦", title: "Marketing Design", text: "Social creative, ad sets, sales decks, illustration, packaging and event graphics — all on-brand." },
+    { icon: "✦", title: "Motion & Animation", text: "Lottie animations, micro-interactions, scroll-driven storytelling and product-demo motion that elevates the whole." },
+    { icon: "◉", title: "Web Design", text: "Marketing-site visual design with conversion-tuned hierarchy — shipped to dev or built by our engineers in-house." },
   ],
   process: [
     { title: "Research", text: "Audience, competitors and brand audit." },

@@ -1,4 +1,5 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import wdBanner from "../../../assets/images/services/web-development.jpg";
 
 export const metadata = {
   title: "Web Development | KZK Services",
@@ -7,6 +8,7 @@ export const metadata = {
 };
 
 const data = {
+  bannerImage: wdBanner,
   badge: "Web Development",
   titleLead: "Modern websites that load fast",
   titleAccent: "and convert visitors into customers",
@@ -64,22 +66,32 @@ const data = {
     {
       icon: "◐",
       title: "Marketing Websites",
-      text: "Multi-page sites with rich content, blogs, landing pages and lead capture flows.",
+      text: "Multi-page sites with rich content, blogs, landing pages and lead capture flows tuned for SEO.",
     },
     {
       icon: "▤",
       title: "Web Applications",
-      text: "Authenticated dashboards, SaaS products and internal tools with custom workflows.",
+      text: "Authenticated dashboards, SaaS products and internal tools with custom workflows and integrations.",
     },
     {
       icon: "◰",
-      title: "E-commerce",
-      text: "Shopify, WooCommerce or fully custom storefronts — built to convert and easy to manage.",
+      title: "E-commerce Storefronts",
+      text: "Shopify, WooCommerce or fully custom storefronts — built to convert and easy for your team to manage.",
     },
     {
       icon: "▦",
       title: "Headless CMS",
-      text: "Content modeled in Sanity, Contentful or Strapi so your team owns updates end to end.",
+      text: "Content modeled in Sanity, Contentful or Strapi so your team owns updates end to end without filing tickets.",
+    },
+    {
+      icon: "✦",
+      title: "Landing Pages",
+      text: "High-converting, ad-ready landing pages with A/B testing built in — perfect for paid campaigns.",
+    },
+    {
+      icon: "◉",
+      title: "Maintenance & Care",
+      text: "Hosting, monitoring, security patches and ongoing enhancements — your site stays fast, secure and modern.",
     },
   ],
   process: [

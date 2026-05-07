@@ -1,191 +1,251 @@
 import Link from "next/link";
-import "../../assets/css/inner-pages.css";
+import Image from "next/image";
+import "../../assets/css/service-template.css";
+import defaultBanner from "../../assets/images/banner-bg/banner-bg.jpg";
+
+const ArrowIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+);
 
 const ServiceTemplate = ({ data }) => {
   const {
     badge,
-    titleLead,
-    titleAccent,
     subtitle,
-    heroIcon,
     intro,
-    benefits,
     deliverables,
     process,
-    tech,
     stats,
+    tech,
     faqs,
+    bannerImage,
   } = data;
 
+  const heroBanner = bannerImage || defaultBanner;
+
+  // The Tailored grid shows up to 6 cards; the top-center card (index 1) is highlighted.
+  const cards = (deliverables || []).slice(0, 6);
+
+  // Derive 4 stats for the 2x2 grid; pad if data has fewer.
+  const statTiles = (stats || []).slice(0, 4);
+
   return (
-    <main className="ip-page">
-      {/* HERO */}
-      <section className="ip-hero">
-        <div className="ip-hero-bg">
-          <div className="ip-orb ip-orb-1" />
-          <div className="ip-orb ip-orb-2" />
-          <div className="ip-orb ip-orb-3" />
-          <div className="ip-hero-grid" />
-        </div>
-        <div className="ip-hero-content">
-          <span className="ip-badge">{badge}</span>
-          <h1 className="ip-title">
-            {titleLead} <br />
-            <span className="ip-grad">{titleAccent}</span>
-          </h1>
-          <p className="ip-subtitle">{subtitle}</p>
-          <div className="ip-hero-actions">
-            <Link href="/contact-us" className="ip-btn-primary">
-              Start a Project
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
-            <Link href="/portfolio" className="ip-btn-secondary">
-              See Our Work
-            </Link>
+    <main className="ip-page svc-page">
+      {/* HERO BANNER — contained card, not full-bleed */}
+      <div className="svc-hero-wrap">
+        <section className="svc-hero">
+          <div className="svc-hero-image">
+            <Image
+              src={heroBanner}
+              alt={`${badge} services`}
+              fill
+              priority
+              style={{ objectFit: "cover" }}
+            />
           </div>
-        </div>
-      </section>
+          <div className="svc-hero-overlay" />
+          <div className="svc-hero-content">
+            <h1 className="svc-hero-title">{badge} Services</h1>
+            <p className="svc-hero-sub">{subtitle}</p>
+            <span className="svc-hero-badge">
+              <span className="svc-hero-badge-dot" />
+              Custom Solutions For Every Need
+            </span>
+          </div>
+        </section>
+      </div>
 
-      {/* INTRO */}
-      <section className="ip-section">
-        <div className="ip-container">
-          <div className="ip-split">
-            <div>
-              <span className="ip-split-eyebrow">{intro.eyebrow}</span>
-              <h2 className="ip-split-title">
-                {intro.lead} <span className="ip-grad">{intro.accent}</span>
+      {/* ABOUT + STATS */}
+      <section className="svc-section">
+        <div className="svc-container">
+          <div className="svc-about-grid">
+            <div className="svc-about-copy">
+              <span className="svc-eyebrow">
+                <span className="svc-eyebrow-dot" />
+                Our Community
+              </span>
+              <h2 className="svc-about-title">
+                Join a <span className="svc-accent">Growing Community</span> of Business and{" "}
+                <span className="svc-accent">{badge}</span> Partners
               </h2>
-              {intro.paragraphs.map((p, i) => (
-                <p key={i} className="ip-split-text">{p}</p>
-              ))}
-              <ul className="ip-bullets">
-                {intro.bullets.map((b, i) => (
-                  <li key={i}>{b}</li>
-                ))}
-              </ul>
+              <p className="svc-about-text">
+                {(intro && intro.paragraphs && intro.paragraphs[0]) || subtitle}
+              </p>
+              <Link href="/contact-us" className="svc-pill-btn">
+                Join Us
+                <span className="svc-pill-btn-arrow">
+                  <ArrowIcon />
+                </span>
+              </Link>
             </div>
-            <div className="ip-split-visual">
-              <span className="ip-split-visual-icon">{heroIcon}</span>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* BENEFITS */}
-      <section className="ip-section ip-section-alt">
-        <div className="ip-container">
-          <div className="ip-section-head">
-            <span className="ip-section-tag">Why Us</span>
-            <h2 className="ip-section-title">
-              Built for <span className="ip-grad">real outcomes</span>
-            </h2>
-            <p className="ip-section-text">
-              We blend craft and strategy so the work doesn&apos;t just look
-              great — it performs.
-            </p>
-          </div>
-          <div className="ip-grid ip-grid-3">
-            {benefits.map((b) => (
-              <div key={b.title} className="ip-card">
-                <div className="ip-card-icon">{b.icon}</div>
-                <h3 className="ip-card-title">{b.title}</h3>
-                <p className="ip-card-text">{b.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* DELIVERABLES */}
-      <section className="ip-section">
-        <div className="ip-container">
-          <div className="ip-section-head">
-            <span className="ip-section-tag">What You Get</span>
-            <h2 className="ip-section-title">
-              Everything you need, <span className="ip-grad">in one engagement</span>
-            </h2>
-          </div>
-          <div className="ip-grid ip-grid-2">
-            {deliverables.map((d) => (
-              <div key={d.title} className="ip-card">
-                <div className="ip-card-icon">{d.icon}</div>
-                <h3 className="ip-card-title">{d.title}</h3>
-                <p className="ip-card-text">{d.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PROCESS */}
-      <section className="ip-section ip-section-alt">
-        <div className="ip-container">
-          <div className="ip-section-head">
-            <span className="ip-section-tag">Process</span>
-            <h2 className="ip-section-title">
-              How a project <span className="ip-grad">comes together</span>
-            </h2>
-          </div>
-          <div className="ip-steps">
-            {process.map((s, i) => (
-              <div key={s.title} className="ip-step">
-                <div className="ip-step-num">0{i + 1}</div>
-                <h3 className="ip-step-title">{s.title}</h3>
-                <p className="ip-step-text">{s.text}</p>
-              </div>
-            ))}
-          </div>
-
-          {tech && tech.length > 0 && (
-            <div style={{ marginTop: 60, textAlign: "center" }}>
-              <span className="ip-section-tag">Stack & Tools</span>
-              <div className="ip-pills" style={{ justifyContent: "center", marginTop: 16 }}>
-                {tech.map((t) => (
-                  <span key={t} className="ip-pill">{t}</span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {stats && (
-            <div className="ip-stats">
-              {stats.map((s) => (
-                <div key={s.label} className="ip-stat">
-                  <div className="ip-stat-num">{s.num}</div>
-                  <div className="ip-stat-label">{s.label}</div>
+            <div className="svc-stats">
+              {statTiles.map((s) => (
+                <div key={s.label} className="svc-stat-card">
+                  <div className="svc-stat-num">{s.num}</div>
+                  <div className="svc-stat-label">{s.label}</div>
                 </div>
               ))}
             </div>
-          )}
+          </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      {faqs && (
-        <section className="ip-section">
-          <div className="ip-container">
-            <div className="ip-section-head">
-              <span className="ip-section-tag">FAQ</span>
-              <h2 className="ip-section-title">
-                Common <span className="ip-grad">questions</span>
+      {/* TAILORED SERVICES */}
+      <section className="svc-section svc-section-soft">
+        <div className="svc-container">
+          <div className="svc-tailored-head">
+            <span className="svc-eyebrow" style={{ justifyContent: "center" }}>
+              <span className="svc-eyebrow-dot" />
+              {badge} Services
+            </span>
+            <h2 className="svc-tailored-title">
+              Comprehensive <span className="svc-accent">{badge} Services</span>{" "}
+              Tailored to Meet Your Unique <span className="svc-accent">Needs</span>
+            </h2>
+            <p className="svc-tailored-text">{subtitle}</p>
+          </div>
+
+          <div className="svc-cards">
+            {cards.map((c, i) => (
+              <div
+                key={c.title}
+                className={`svc-card${i === 1 ? " is-active" : ""}`}
+              >
+                <div className="svc-card-icon">{c.icon}</div>
+                <h3 className="svc-card-title">{c.title}</h3>
+                <p className="svc-card-text">{c.text}</p>
+                <Link href="/contact-us" className="svc-card-cta">
+                  Get a Quote
+                  <span className="svc-card-cta-arrow">
+                    <ArrowIcon />
+                  </span>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WORK PROCESS — zigzag pillar cards */}
+      <section className="svc-section">
+        <div className="svc-container">
+          <div className="svc-process-head svc-process-head-center">
+            <span className="svc-eyebrow" style={{ justifyContent: "center" }}>
+              <span className="svc-eyebrow-dot" />
+              Work Process
+            </span>
+            <h2 className="svc-process-title">
+              Our <span className="svc-accent">Proven Process</span> for Excellence
+            </h2>
+            <p className="svc-tailored-text">
+              Every project is different, but our process — refined across
+              hundreds of engagements — adapts to fit. Here&apos;s how we move
+              from kickoff to launch.
+            </p>
+          </div>
+
+          <div className="svc-pillars">
+            <div className="svc-pillars-rail" aria-hidden="true" />
+            {(process || []).map((s, i) => (
+              <div key={s.title} className="svc-pillar">
+                <div className="svc-pillar-num">0{i + 1}</div>
+                <div className="svc-pillar-divider" />
+                <h3 className="svc-pillar-title">{s.title}</h3>
+                <p className="svc-pillar-text">{s.text}</p>
+                <span className="svc-pillar-corner" aria-hidden="true" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TECH / TOOLS STACK */}
+      {tech && tech.length > 0 && (
+        <section className="svc-section svc-section-soft">
+          <div className="svc-container">
+            <div className="svc-tailored-head">
+              <span className="svc-eyebrow" style={{ justifyContent: "center" }}>
+                <span className="svc-eyebrow-dot" />
+                Tools &amp; Stack
+              </span>
+              <h2 className="svc-tailored-title">
+                The <span className="svc-accent">stack we use</span> to ship
+                your {badge.toLowerCase()} project
               </h2>
+              <p className="svc-tailored-text">
+                Battle-tested tools we trust to deliver consistent results — no
+                experimental dependencies, no black-box magic.
+              </p>
             </div>
-            <div className="ip-faq">
+            <div className="svc-tech">
+              {tech.map((t) => (
+                <span key={t} className="svc-tech-pill">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      {faqs && faqs.length > 0 && (
+        <section className="svc-section">
+          <div className="svc-container">
+            <div className="svc-tailored-head">
+              <span className="svc-eyebrow" style={{ justifyContent: "center" }}>
+                <span className="svc-eyebrow-dot" />
+                FAQ
+              </span>
+              <h2 className="svc-tailored-title">
+                Common <span className="svc-accent">Questions</span>
+              </h2>
+              <p className="svc-tailored-text">
+                Quick answers to the things prospective clients usually ask
+                before kicking off a {badge.toLowerCase()} engagement.
+              </p>
+            </div>
+            <div className="svc-faq">
               {faqs.map((f, i) => (
-                <details key={i} className="ip-faq-item">
-                  <summary className="ip-faq-summary">
+                <details key={i} className="svc-faq-item">
+                  <summary className="svc-faq-summary">
                     {f.q}
-                    <span className="ip-faq-icon">+</span>
+                    <span className="svc-faq-icon">+</span>
                   </summary>
-                  <p className="ip-faq-answer">{f.a}</p>
+                  <p className="svc-faq-answer">{f.a}</p>
                 </details>
               ))}
             </div>
           </div>
         </section>
       )}
+
+      {/* FINAL CTA */}
+      <section className="svc-section svc-section-soft">
+        <div className="svc-container">
+          <div className="svc-cta">
+            <h2 className="svc-cta-title">
+              Ready to <span className="svc-accent">get started?</span>
+            </h2>
+            <p className="svc-cta-text">
+              Let&apos;s discuss your {badge.toLowerCase()} project and build
+              something exceptional together. We typically respond within one
+              business day with next steps and a fixed quote.
+            </p>
+            <div className="svc-cta-actions">
+              <Link href="/contact-us" className="ip-btn-primary">
+                Start a Project
+                <ArrowIcon />
+              </Link>
+              <Link href="/portfolio" className="ip-btn-secondary">
+                View Our Work
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };

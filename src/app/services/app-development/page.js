@@ -37,10 +37,12 @@ const data = {
     { icon: "◉", title: "Crash-Free", text: "Sentry, OTA updates and proactive monitoring keep ratings high." },
   ],
   deliverables: [
-    { icon: "◐", title: "iOS Apps", text: "Swift / SwiftUI native builds when raw performance is the priority." },
-    { icon: "▤", title: "Android Apps", text: "Kotlin native builds with Material 3 and Jetpack Compose." },
-    { icon: "◰", title: "Cross-Platform", text: "React Native or Flutter for shared codebase and faster shipping." },
-    { icon: "▦", title: "Backend & APIs", text: "Auth, payments, push, analytics and admin dashboard included." },
+    { icon: "◐", title: "iOS Apps", text: "Swift / SwiftUI native builds when raw performance, custom gestures and platform feel are the priority." },
+    { icon: "▤", title: "Android Apps", text: "Kotlin native builds with Material 3 and Jetpack Compose — modern Android done right." },
+    { icon: "◰", title: "Cross-Platform Apps", text: "React Native or Flutter for one shared codebase shipped to both stores — 90% code reuse, real native feel." },
+    { icon: "▦", title: "Backend & APIs", text: "Auth, payments, push notifications, analytics and admin dashboards — the full stack behind your app." },
+    { icon: "✦", title: "App Store Optimization", text: "Store listings, screenshots, copy and ASO strategy that wins higher install rates and reviews." },
+    { icon: "◉", title: "Care & Updates", text: "Monitoring, crash analytics, OTA updates and store re-submissions — your app stays at 4.8★ year after year." },
   ],
   process: [
     { title: "Discover", text: "Users, journeys and core flows mapped." },

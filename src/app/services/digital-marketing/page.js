@@ -37,10 +37,12 @@ const data = {
     { icon: "⚡", title: "Rapid Testing", text: "Weekly experiments mean we find what works fast and scale spend confidently." },
   ],
   deliverables: [
-    { icon: "◐", title: "Paid Ads", text: "Google, Meta, TikTok, LinkedIn — strategy, creative, targeting, optimization." },
-    { icon: "▤", title: "Social Media", text: "Organic content calendars, community management and influencer programs." },
-    { icon: "◰", title: "Email & SMS", text: "Klaviyo / Customer.io flows that convert and retain customers." },
-    { icon: "▦", title: "Content Marketing", text: "Blogs, newsletters, video and short-form built around real keywords." },
+    { icon: "◐", title: "Paid Ads", text: "Google, Meta, TikTok, LinkedIn — strategy, platform-native creative, targeting, and continuous optimization." },
+    { icon: "▤", title: "Social Media", text: "Organic content calendars, community management, short-form video and influencer programs that build presence." },
+    { icon: "◰", title: "Email & SMS", text: "Klaviyo / Customer.io flows — welcome, abandoned-cart, post-purchase and lifecycle — that retain and re-activate." },
+    { icon: "▦", title: "Content Marketing", text: "Blogs, newsletters, video and short-form built around real search demand and your buyer's actual questions." },
+    { icon: "✦", title: "Conversion Optimization", text: "Landing-page A/B tests, funnel audits, and CRO experiments tied to real revenue lift — not just CTR vanity metrics." },
+    { icon: "◉", title: "Analytics & Attribution", text: "Server-side tracking, GA4 + Northbeam setup, and dashboards that show which channel drove which dollar of revenue." },
   ],
   process: [
     { title: "Audit", text: "Spend, creative and channel mix review." },
