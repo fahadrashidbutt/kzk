@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import "../../assets/css/inner-pages.css";
 import "./gmb.css";
+import FinalCta from "../../components/final-cta/FinalCta";
 // TODO: drop your real GMB images into src/assets/images/google-my-business/ then
 // switch these imports. The folder exists but is currently empty, so for now we fall
 // back to images that exist in the project so the page builds.
@@ -122,8 +123,8 @@ const steps = [
 ];
 
 const sidebarServices = [
-  { label: "Content Marketing", path: "/services/digital-marketing" },
-  { label: "Google AdWords", path: "/services/digital-marketing" },
+  { label: "Content Marketing", path: "/services/content-marketing" },
+  { label: "Google AdWords", path: "/services/google-adwords" },
   { label: "Web Development", path: "/services/web-development" },
   { label: "SEO Optimization", path: "/services/seo" },
   { label: "App Development", path: "/services/app-development" },
@@ -287,7 +288,7 @@ export default function GoogleMyBusinessPage() {
                     <span className="gmb-contact-icon">
                       <PhoneIcon />
                     </span>
-                    <a href="tel:+14432929962">(443) 292-9962</a>
+                    <a href="tel:+14435298897">(443) 529-8897</a>
                   </div>
                   <div className="gmb-contact-item">
                     <span className="gmb-contact-icon">
@@ -385,40 +386,8 @@ export default function GoogleMyBusinessPage() {
         </div>
       </section>
 
-      {/* FINAL CTA — App Development teaser */}
-      <section className="ip-section">
-        <div className="ip-container">
-          <div className="gmb-final">
-            <div className="gmb-final-corner gmb-final-corner-tl" />
-            <div className="gmb-final-corner gmb-final-corner-br" />
-            <span className="gmb-final-eyebrow">App Development</span>
-            <h2 className="gmb-final-title">
-              Design Your Successful{" "}
-              <span className="ip-grad">App Now!</span>
-            </h2>
-            <p className="gmb-final-text">
-              KZK tries hard to give the best app development services by
-              giving detailed attention to the widgets, app design, components,
-              and plugins. The main goal is to provide you with a successful
-              app that takes seconds to open and does not suddenly stop. So if
-              you want to develop your app from a team who gives a guarantee,
-              then KZK can be your best partner. Connect with us and get the
-              responsive app!
-            </p>
-            <div className="gmb-final-actions">
-              <Link href="/contact-us" className="ip-btn-primary">
-                Connect With Us
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-              <Link href="/services/app-development" className="ip-btn-secondary">
-                Explore App Service
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* FINAL CTA — shared site-wide */}
+      <FinalCta />
     </main>
   );
 }

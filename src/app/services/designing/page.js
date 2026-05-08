@@ -1,4 +1,5 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import designBanner from "../../../assets/images/services/desiging.jpg";
 
 export const metadata = {
   title: "Designing | KZK Services",
@@ -7,6 +8,7 @@ export const metadata = {
 };
 
 const data = {
+  bannerImage: designBanner,
   badge: "Design",
   titleLead: "Design that looks beautiful",
   titleAccent: "and earns its place",

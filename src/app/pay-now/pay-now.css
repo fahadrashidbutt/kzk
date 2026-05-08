@@ -1,0 +1,294 @@
+/* === Pay Now page (.pay-*) === */
+.pay-page {
+  background: var(--bg-base);
+}
+
+/* Section heading spacing tweak */
+.pay-page .ip-section-head {
+  margin-bottom: 44px;
+}
+
+/* Two-up grid of payment methods */
+.pay-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.pay-card {
+  padding: 44px 40px 36px;
+  background: rgba(13, 19, 32, 0.6);
+  border: 1px solid rgba(24, 161, 215, 0.22);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+.pay-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(24, 161, 215, 0.45);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
+}
+.pay-card::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: rgba(24, 161, 215, 0.18);
+  border-radius: 50%;
+  filter: blur(80px);
+  top: -90px;
+  right: -90px;
+  pointer-events: none;
+}
+.pay-card-paypal::before {
+  background: rgba(0, 112, 186, 0.2);
+}
+.pay-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.pay-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.pay-card-icon {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--grad-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(24, 161, 215, 0.4);
+}
+.pay-card-icon svg {
+  width: 26px;
+  height: 26px;
+}
+.pay-card-icon-pp {
+  background: linear-gradient(135deg, #009cde 0%, #003087 100%);
+  box-shadow: 0 12px 28px rgba(0, 112, 186, 0.45);
+}
+
+.pay-card-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  background: rgba(24, 161, 215, 0.1);
+  border: 1px solid rgba(24, 161, 215, 0.25);
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.pay-card-title {
+  font-size: clamp(1.4rem, 2.4vw, 1.75rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 12px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.pay-card-text {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0 0 26px;
+}
+
+/* Embed wrappers — keeps both buttons centered with a soft canvas */
+.pay-stripe-wrap,
+.pay-paypal-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 64px;
+  margin-bottom: 26px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+}
+.pay-paypal-wrap {
+  background: linear-gradient(180deg, #eef7fc 0%, #dceef8 100%);
+  border: 1px solid rgba(24, 161, 215, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 10px 24px rgba(24, 161, 215, 0.1);
+  padding: 22px 18px;
+}
+.pay-paypal-target {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Force PayPal-rendered labels & inputs to dark text so they're readable
+   on the light brand-tinted wrapper. PayPal injects raw HTML controls
+   that inherit body color (white) on dark themes — override here. */
+.pay-paypal-wrap,
+.pay-paypal-wrap label,
+.pay-paypal-wrap span,
+.pay-paypal-wrap p,
+.pay-paypal-wrap legend,
+.pay-paypal-wrap small,
+.pay-paypal-wrap strong,
+.pay-paypal-wrap div {
+  color: #0d1320;
+}
+.pay-paypal-wrap input,
+.pay-paypal-wrap select,
+.pay-paypal-wrap textarea {
+  color: #0d1320 !important;
+  -webkit-text-fill-color: #0d1320 !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(13, 19, 32, 0.18) !important;
+  border-radius: 8px !important;
+}
+.pay-paypal-wrap input::placeholder,
+.pay-paypal-wrap textarea::placeholder {
+  color: rgba(13, 19, 32, 0.45) !important;
+  -webkit-text-fill-color: rgba(13, 19, 32, 0.45) !important;
+}
+.pay-paypal-wrap input:focus,
+.pay-paypal-wrap select:focus,
+.pay-paypal-wrap textarea:focus {
+  outline: none !important;
+  border-color: var(--accent-2) !important;
+  box-shadow: 0 0 0 3px rgba(24, 161, 215, 0.18) !important;
+}
+
+/* Methods row inside each card */
+.pay-card-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 22px;
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+}
+.pay-card-methods span {
+  padding: 7px 13px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.5px;
+}
+
+/* Trust badge centered below the grid */
+.pay-trust-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+.pay-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  font-size: 12px;
+  color: var(--accent-2);
+  background: rgba(24, 161, 215, 0.08);
+  border: 1px solid rgba(24, 161, 215, 0.22);
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.pay-trust svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Help row below the cards */
+.pay-help {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+.pay-help a {
+  color: var(--accent-2);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(24, 161, 215, 0.4);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.pay-help a:hover {
+  color: var(--accent-3);
+  border-bottom-color: var(--accent-3);
+}
+
+/* Why-pay-with-us features grid */
+.pay-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.pay-feature {
+  padding: 32px 26px;
+  background: rgba(13, 19, 32, 0.55);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+.pay-feature:hover {
+  transform: translateY(-4px);
+  border-color: rgba(24, 161, 215, 0.4);
+}
+.pay-feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(24, 161, 215, 0.12);
+  border: 1px solid rgba(24, 161, 215, 0.3);
+  color: var(--accent-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.pay-feature-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.pay-feature-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+  letter-spacing: -0.3px;
+}
+.pay-feature-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .pay-grid { grid-template-columns: 1fr; max-width: 600px; }
+  .pay-features { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .pay-card { padding: 32px 24px 28px; border-radius: 20px; }
+  .pay-card-icon { width: 48px; height: 48px; border-radius: 14px; }
+  .pay-card-icon svg { width: 22px; height: 22px; }
+  .pay-features { grid-template-columns: 1fr; gap: 16px; }
+  .pay-feature { padding: 26px 22px; }
+}

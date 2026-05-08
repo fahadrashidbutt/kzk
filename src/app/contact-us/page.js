@@ -13,6 +13,9 @@ const services = [
   "Other",
 ];
 
+// All form submissions across the site are delivered to this email.
+const CONTACT_EMAIL = "hunainbutt1100@gmail.com";
+
 const Page = () => {
   const [form, setForm] = useState({
     name: "",
@@ -24,12 +27,53 @@ const Page = () => {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (sending) return;
+    setSending(true);
+    setError("");
+
+    try {
+      const res = await fetch(
+        `https://formsubmit.co/ajax/${CONTACT_EMAIL}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            phone: form.phone || "—",
+            company: form.company || "—",
+            service: form.service,
+            budget: form.budget || "Not specified",
+            message: form.message,
+            _subject: `New project inquiry from ${form.name}`,
+            _template: "table",
+            _captcha: "false",
+          }),
+        }
+      );
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && (data.success === "true" || data.success === true)) {
+        setSubmitted(true);
+      } else {
+        throw new Error(data.message || "Submission failed");
+      }
+    } catch (err) {
+      setError(
+        "Sorry — we couldn't send your message right now. Please try again, or email us directly at sales@kzkservices.com."
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -85,14 +129,14 @@ const Page = () => {
                   <span className="contact-info-icon">◉</span>
                   <div>
                     <div className="contact-info-label">Office</div>
-                    <span>Maryland, USA</span>
+                    <span>1519 Hopewell Ave, Essex, MD 21221</span>
                   </div>
                 </li>
                 <li>
                   <span className="contact-info-icon">◷</span>
                   <div>
                     <div className="contact-info-label">Hours</div>
-                    <span>Mon–Fri · 9:00 – 18:00 EST</span>
+                    <span>Mon – Sat · 9:00 AM – 6:00 PM</span>
                   </div>
                 </li>
               </ul>
@@ -201,11 +245,23 @@ const Page = () => {
                       placeholder="Tell us about your goals, timelines, and anything else worth knowing."
                     />
                   </label>
-                  <button type="submit" className="ip-btn-primary contact-submit">
-                    Send Message
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
+                  {error && (
+                    <div className="contact-error" role="alert">
+                      {error}
+                    </div>
+                  )}
+                  <button
+                    type="submit"
+                    className="ip-btn-primary contact-submit"
+                    disabled={sending}
+                    aria-busy={sending}
+                  >
+                    {sending ? "Sending…" : "Send Message"}
+                    {!sending && (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    )}
                   </button>
                 </form>
               )}

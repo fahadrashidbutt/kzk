@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import "../../../assets/css/inner-pages.css";
 import "../../../assets/css/portfolio-detail.css";
 import { portfolios, getPortfolioBySlug } from "../../../data/portfolio";
+import FinalCta from "../../../components/final-cta/FinalCta";
 
 export function generateStaticParams() {
   return portfolios.map((p) => ({ slug: p.slug }));
@@ -245,32 +246,8 @@ export default async function PortfolioDetailPage({ params }) {
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="ip-section">
-        <div className="ip-container">
-          <div className="pd-cta">
-            <span className="ip-section-tag">Like What You See?</span>
-            <h2 className="pd-cta-title">
-              Let&apos;s build your <span className="ip-grad">next case study.</span>
-            </h2>
-            <p className="pd-cta-text">
-              Tell us about your goals — we&apos;ll come back with a roadmap, a
-              timeline and a fixed quote within one business day.
-            </p>
-            <div className="pd-cta-actions">
-              <Link href="/contact-us" className="ip-btn-primary">
-                Start a Project
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-              <Link href="/portfolio" className="ip-btn-secondary">
-                View All Portfolio
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* FINAL CTA — shared site-wide */}
+      <FinalCta />
     </main>
   );
 }

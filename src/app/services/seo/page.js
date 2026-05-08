@@ -1,4 +1,5 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import seoBanner from "../../../assets/images/services/seo.jpg";
 
 export const metadata = {
   title: "SEO Services | KZK Services",
@@ -7,6 +8,7 @@ export const metadata = {
 };
 
 const data = {
+  bannerImage: seoBanner,
   badge: "SEO",
   titleLead: "Rank higher.",
   titleAccent: "Earn traffic that actually converts.",

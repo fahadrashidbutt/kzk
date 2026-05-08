@@ -20,6 +20,8 @@ const servicesLinks = [
   { path: "/services/seo", label: "SEO" },
   { path: "/services/digital-marketing", label: "Digital Marketing" },
   { path: "/services/designing", label: "Designing" },
+  { path: "/services/content-marketing", label: "Content Marketing" },
+  { path: "/services/google-adwords", label: "Google AdWords" },
 ];
 
 const Menu = () => {
@@ -67,9 +69,6 @@ const Menu = () => {
       <div className="kzk-nav-inner">
         <Link href="/" className="kzk-nav-logo" aria-label="KZK Services home">
           <Image src={LogoKZK} alt="KZK Services" width={56} height={56} priority />
-          <span className="kzk-nav-logo-text">
-            KZK<span className="kzk-nav-logo-x">×</span>SERVICES
-          </span>
         </Link>
 
         <nav className="kzk-nav-links" aria-label="Main">
@@ -135,7 +134,7 @@ const Menu = () => {
         </nav>
 
         <div className="kzk-nav-cta">
-          <Link href="/contact-us" className="kzk-nav-pay">
+          <Link href="/pay-now" className="kzk-nav-pay">
             Pay Now
           </Link>
           <button
@@ -171,7 +170,7 @@ const Menu = () => {
               {l.label}
             </Link>
           ))}
-          <Link href="/contact-us" className="kzk-nav-mobile-pay">
+          <Link href="/pay-now" className="kzk-nav-mobile-pay">
             Pay Now
           </Link>
         </nav>

@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import "../../assets/css/portfolio.css";
 import { portfolios } from "../../data/portfolio";
+import FinalCta from "../../components/final-cta/FinalCta";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -406,25 +407,8 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="cta-wrapper">
-          <div className="cta-content">
-            <span className="cta-badge">Let&apos;s Create Something Amazing</span>
-            <h2 className="cta-title">
-              Ready to transform <br />
-              <span className="gradient">your digital presence?</span>
-            </h2>
-            <p className="cta-text">Get in touch with us and let&apos;s bring your vision to life</p>
-            <Link href="/contact-us" className="cta-btn">
-              Start a Project
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* FINAL CTA — shared site-wide */}
+      <FinalCta />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import adBanner from "../../../assets/images/services/app-development.jpg";
 
 export const metadata = {
   title: "App Development | KZK Services",
@@ -7,6 +8,7 @@ export const metadata = {
 };
 
 const data = {
+  bannerImage: adBanner,
   badge: "App Development",
   titleLead: "Native-feeling mobile apps,",
   titleAccent: "shipped on iOS & Android",

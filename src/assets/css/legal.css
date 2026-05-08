@@ -1,0 +1,139 @@
+/* === Legal pages (Privacy Policy, Terms & Conditions) — .lp-* === */
+.lp-page {
+  background: var(--bg-base);
+}
+
+/* Hero */
+.lp-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--grad-bg);
+  padding: 140px 24px 80px;
+  text-align: center;
+}
+.lp-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.lp-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  background: rgba(24, 161, 215, 0.1);
+  border: 1px solid rgba(24, 161, 215, 0.25);
+  padding: 7px 16px;
+  border-radius: 30px;
+  margin-bottom: 22px;
+}
+.lp-title {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  color: #fff;
+  margin: 0 0 16px;
+}
+.lp-meta {
+  font-size: 0.9rem;
+  color: var(--text-subtle);
+  letter-spacing: 0.5px;
+}
+
+/* Content */
+.lp-content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 80px 24px 110px;
+}
+.lp-content > p,
+.lp-content > h2,
+.lp-content > h3,
+.lp-content > ul {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.lp-content h2 {
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.4px;
+  line-height: 1.25;
+  margin: 56px 0 18px;
+  padding-top: 0;
+  position: relative;
+}
+.lp-content h2::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: var(--grad-accent);
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+.lp-content h2:first-child {
+  margin-top: 0;
+}
+.lp-content h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 36px 0 12px;
+}
+.lp-content p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+}
+.lp-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lp-content ul li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+.lp-content ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grad-accent);
+  box-shadow: 0 0 0 3px rgba(24, 161, 215, 0.12);
+}
+.lp-content strong {
+  color: #fff;
+  font-weight: 700;
+}
+.lp-content a {
+  color: var(--accent-2);
+  border-bottom: 1px solid rgba(24, 161, 215, 0.4);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.lp-content a:hover {
+  color: var(--accent-3);
+  border-bottom-color: var(--accent-3);
+}
+
+@media (max-width: 700px) {
+  .lp-hero { padding: 120px 20px 60px; }
+  .lp-content { padding: 60px 20px 80px; }
+  .lp-content h2 { margin: 42px 0 14px; }
+}

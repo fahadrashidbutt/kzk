@@ -8,6 +8,7 @@ import "../assets/css/homepage.css";
 import "../assets/css/about-section.css";
 import Testimonial from "../components/testimonials/Testimonial";
 import AboutUnique from "../components/about-unique/AboutUnique";
+import FinalCta from "../components/final-cta/FinalCta";
 import { portfolios } from "../data/portfolio";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -123,6 +124,25 @@ const heroStats = [
   { num: "98%", label: "Client Satisfaction" },
   { num: "12+", label: "Years Experience" },
   { num: "50+", label: "Experts on Team" },
+];
+
+const seoTypes = [
+  {
+    title: "On-Page",
+    text: "Solidify your rank with perfect use of meta tags and image or keyword optimization.",
+  },
+  {
+    title: "Off-Page",
+    text: "Keep you on top of the radar by bringing referral traffic through link building and guest posting.",
+  },
+  {
+    title: "Technical SEO",
+    text: "Focus on indexing and rendering your website to make your website presence strong and impactful.",
+  },
+  {
+    title: "Local SEO",
+    text: "Use local strategies through posting and other tricks to provide you with the blast ranking.",
+  },
 ];
 
 const processSteps = [
@@ -444,6 +464,65 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SEO DEEP-DIVE */}
+      <section className="kzk-section kzk-seo-section">
+        <div className="kzk-seo-deco" aria-hidden="true" />
+        <div className="kzk-container">
+          <div className="kzk-seo-grid">
+            <div className="kzk-seo-copy">
+              <span className="kzk-eyebrow-bracket">[ SEO Services ]</span>
+              <h2 className="kzk-section-title">
+                Expert In Search Engine{" "}
+                <span className="kzk-grad">Optimization Strategy</span>
+              </h2>
+              <p className="kzk-section-text">
+                We will boost your ranking and money now without spending a
+                penny on a new website. We are proud of our track record.
+              </p>
+              <ul className="kzk-seo-bullets">
+                <li>
+                  <span className="kzk-seo-bullet-check">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  We use the latest tools to build your brand awareness, drive
+                  web traffic and grow overall sales by connecting you with
+                  the customers in the best way.
+                </li>
+                <li>
+                  <span className="kzk-seo-bullet-check">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  We analyze the competitors and come up with the best
+                  strategy to retain your rank on top.
+                </li>
+              </ul>
+              <Link href="/services/seo" className="kzk-btn-primary kzk-btn-hero">
+                Explore SEO Service
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+
+            <div className="kzk-seo-cards">
+              {seoTypes.map((s, i) => (
+                <div key={s.title} className="kzk-seo-card">
+                  <span className="kzk-seo-card-num">0{i + 1}</span>
+                  <span className="kzk-seo-card-bar" aria-hidden="true" />
+                  <h3 className="kzk-seo-card-title">{s.title}</h3>
+                  <p className="kzk-seo-card-text">{s.text}</p>
+                  <span className="kzk-seo-card-corner" aria-hidden="true" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* OUR PROCESS */}
       <section className="kzk-section">
         <div className="kzk-container">
@@ -620,31 +699,8 @@ export default function Home() {
 
       <Testimonial />
 
-      {/* BIG CTA — bordered card with lined eyebrow */}
-      <section className="kzk-section">
-        <div className="kzk-container">
-          <div className="kzk-final-cta-outer kzk-reveal">
-            <div className="kzk-final-cta">
-              <span className="kzk-cta-eyebrow">
-                <span className="kzk-cta-eyebrow-line" />
-                Available For New Project
-                <span className="kzk-cta-eyebrow-line" />
-              </span>
-              <h2 className="kzk-final-cta-title">
-                Interested in Working <br />
-                with KZK Services?
-              </h2>
-              <p className="kzk-final-cta-text">
-                Tell us about your goals — we’ll come back with a roadmap, a
-                timeline and a fixed quote within one business day.
-              </p>
-              <Link href="/contact-us" className="kzk-final-cta-btn">
-                Schedule a Call
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* BIG CTA — shared site-wide */}
+      <FinalCta />
     </main>
   );
 }

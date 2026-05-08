@@ -476,33 +476,6 @@
   opacity: 0.7;
 }
 
-/* === Tech / Tools stack === */
-.svc-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  max-width: 920px;
-  margin: 0 auto;
-}
-.svc-tech-pill {
-  padding: 10px 22px;
-  background: rgba(13, 19, 32, 0.55);
-  border: 1px solid var(--border-subtle);
-  color: var(--accent-2);
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: all 0.3s ease;
-}
-.svc-tech-pill:hover {
-  background: rgba(24, 161, 215, 0.1);
-  border-color: var(--border-accent);
-  transform: translateY(-2px);
-  color: #fff;
-}
-
 /* === FAQ accordion === */
 .svc-faq {
   display: grid;

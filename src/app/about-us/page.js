@@ -2,6 +2,7 @@ import Link from "next/link";
 import "../../assets/css/inner-pages.css";
 import "../../assets/css/about-section.css";
 import AboutUnique from "../../components/about-unique/AboutUnique";
+import FinalCta from "../../components/final-cta/FinalCta";
 
 export const metadata = {
   title: "About Us | KZK Services",
@@ -37,13 +38,6 @@ const stats = [
   { num: "50+", label: "Experts on Team" },
   { num: "98%", label: "Client Retention" },
   { num: "12+", label: "Years of Craft" },
-];
-
-const team = [
-  { initial: "K", name: "Kazi A.", role: "Founder & CEO", color: "#18a1d7" },
-  { initial: "M", name: "Maria L.", role: "Creative Director", color: "#3eb5e0" },
-  { initial: "R", name: "Raj P.", role: "Head of Engineering", color: "#0d7ba5" },
-  { initial: "S", name: "Sarah K.", role: "Marketing Lead", color: "#7dd3ee" },
 ];
 
 const Page = () => {
@@ -120,46 +114,8 @@ const Page = () => {
         </div>
       </section>
 
-      {/* TEAM */}
-      <section className="ip-section">
-        <div className="ip-container">
-          <div className="ip-section-head">
-            <span className="ip-section-tag">The Team</span>
-            <h2 className="ip-section-title">
-              Senior people, <span className="ip-grad">working together</span>
-            </h2>
-            <p className="ip-section-text">
-              No layers, no handoffs to juniors — the people you meet on day
-              one are the people who will deliver your project.
-            </p>
-          </div>
-
-          <div className="ip-grid ip-grid-4">
-            {team.map((m) => (
-              <div key={m.name} className="ip-card" style={{ textAlign: "center" }}>
-                <div
-                  className="ip-card-icon"
-                  style={{
-                    width: 80,
-                    height: 80,
-                    borderRadius: "50%",
-                    margin: "0 auto 18px",
-                    fontSize: 32,
-                    fontWeight: 800,
-                    background: `linear-gradient(135deg, ${m.color}, #0d7ba5)`,
-                    color: "#fff",
-                    border: "none",
-                  }}
-                >
-                  {m.initial}
-                </div>
-                <h3 className="ip-card-title">{m.name}</h3>
-                <p className="ip-card-text">{m.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* FINAL CTA — shared site-wide */}
+      <FinalCta />
     </main>
   );
 };

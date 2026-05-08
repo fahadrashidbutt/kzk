@@ -1,4 +1,5 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import dmBanner from "../../../assets/images/services/digital-marketing.jpg";
 
 export const metadata = {
   title: "Digital Marketing | KZK Services",
@@ -7,6 +8,7 @@ export const metadata = {
 };
 
 const data = {
+  bannerImage: dmBanner,
   badge: "Digital Marketing",
   titleLead: "Performance marketing",
   titleAccent: "that pays for itself",

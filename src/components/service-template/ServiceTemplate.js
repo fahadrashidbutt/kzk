@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import "../../assets/css/service-template.css";
 import defaultBanner from "../../assets/images/banner-bg/banner-bg.jpg";
+import FinalCta from "../final-cta/FinalCta";
 
 const ArrowIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -17,7 +18,6 @@ const ServiceTemplate = ({ data }) => {
     deliverables,
     process,
     stats,
-    tech,
     faqs,
     bannerImage,
   } = data;
@@ -161,35 +161,6 @@ const ServiceTemplate = ({ data }) => {
         </div>
       </section>
 
-      {/* TECH / TOOLS STACK */}
-      {tech && tech.length > 0 && (
-        <section className="svc-section svc-section-soft">
-          <div className="svc-container">
-            <div className="svc-tailored-head">
-              <span className="svc-eyebrow" style={{ justifyContent: "center" }}>
-                <span className="svc-eyebrow-dot" />
-                Tools &amp; Stack
-              </span>
-              <h2 className="svc-tailored-title">
-                The <span className="svc-accent">stack we use</span> to ship
-                your {badge.toLowerCase()} project
-              </h2>
-              <p className="svc-tailored-text">
-                Battle-tested tools we trust to deliver consistent results — no
-                experimental dependencies, no black-box magic.
-              </p>
-            </div>
-            <div className="svc-tech">
-              {tech.map((t) => (
-                <span key={t} className="svc-tech-pill">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* FAQ */}
       {faqs && faqs.length > 0 && (
         <section className="svc-section">
@@ -222,30 +193,8 @@ const ServiceTemplate = ({ data }) => {
         </section>
       )}
 
-      {/* FINAL CTA */}
-      <section className="svc-section svc-section-soft">
-        <div className="svc-container">
-          <div className="svc-cta">
-            <h2 className="svc-cta-title">
-              Ready to <span className="svc-accent">get started?</span>
-            </h2>
-            <p className="svc-cta-text">
-              Let&apos;s discuss your {badge.toLowerCase()} project and build
-              something exceptional together. We typically respond within one
-              business day with next steps and a fixed quote.
-            </p>
-            <div className="svc-cta-actions">
-              <Link href="/contact-us" className="ip-btn-primary">
-                Start a Project
-                <ArrowIcon />
-              </Link>
-              <Link href="/portfolio" className="ip-btn-secondary">
-                View Our Work
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* FINAL CTA — shared site-wide */}
+      <FinalCta />
     </main>
   );
 };
