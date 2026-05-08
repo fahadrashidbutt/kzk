@@ -37,14 +37,12 @@ export default function PrivacyPolicy() {
           collected and recorded by KZK Services and how we use it.
         </p>
         <p>
-          If you have additional questions or require more information about our
-          Privacy Policy, do not hesitate to contact us. This Privacy Policy
-          applies only to our online activities and is valid for visitors to our
-          website with regards to the information that they shared and/or
-          collect in KZK Services. This policy is not applicable to any
-          information collected offline or via channels other than this website.
-          Our Privacy Policy was created with the help of the Free Privacy
-          Policy Generator.
+          If you have additional questions or require more information about
+          our Privacy Policy, do not hesitate to contact us. This Privacy
+          Policy applies only to our online activities and is valid for
+          visitors to our website with regards to the information shared with
+          or collected by KZK Services. It does not apply to any information
+          collected offline or via channels other than this website.
         </p>
 
         <h2>Consent</h2>
@@ -210,8 +208,8 @@ export default function PrivacyPolicy() {
         <h2>Log Files</h2>
         <p>
           KZK Services follows a standard procedure of using log files. These
-          files log visitors when they visit websites. All hosting companies do
-          this and a part of hosting services&apos; analytics. The information
+          files log visitors when they visit websites. All hosting companies
+          do this as part of their analytics. The information
           collected by log files include internet protocol (IP) addresses,
           browser type, Internet Service Provider (ISP), date and time stamp,
           referring/exit pages, and possibly the number of clicks. These are

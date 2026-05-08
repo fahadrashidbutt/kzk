@@ -20,7 +20,9 @@ const PayPalButton = ({ hostedButtonId }) => {
         renderedRef.current = true;
         return true;
       } catch (e) {
-        console.error("PayPal render error", e);
+        if (process.env.NODE_ENV !== "production") {
+          console.error("PayPal render error", e);
+        }
         return false;
       }
     };

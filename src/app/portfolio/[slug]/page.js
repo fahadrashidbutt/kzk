@@ -104,8 +104,8 @@ export default async function PortfolioDetailPage({ params }) {
           <Image
             src={portfolio.image}
             alt={portfolio.title}
-            placeholder="blur"
             priority
+            sizes="(max-width: 1280px) 100vw, 1280px"
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>

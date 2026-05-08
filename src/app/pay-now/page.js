@@ -1,4 +1,5 @@
 import Script from "next/script";
+import Link from "next/link";
 import "../../assets/css/inner-pages.css";
 import "./pay-now.css";
 import FinalCta from "../../components/final-cta/FinalCta";
@@ -13,7 +14,7 @@ export const metadata = {
 const features = [
   {
     title: "Bank-level Security",
-    text: "256-bit SSL encryption end-to-end. Card data is tokenised by Stripe and never touches our servers.",
+    text: "256-bit SSL encryption end-to-end. Card data is tokenized by Stripe or PayPal and never touches our servers.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" />
@@ -182,7 +183,7 @@ const Page = () => {
 
           <p className="pay-help">
             Need a custom invoice or have a question?{" "}
-            <a href="/contact-us">Get in touch with our team</a>.
+            <Link href="/contact-us">Get in touch with our team</Link>.
           </p>
         </div>
       </section>

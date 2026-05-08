@@ -59,6 +59,19 @@ a {
   color: inherit;
 }
 
+/* Respect users who prefer reduced motion — neutralizes hero/scroll/marquee
+   animations across the site (GSAP timelines, CSS keyframes, transitions). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #0d1320; }
 ::-webkit-scrollbar-thumb {

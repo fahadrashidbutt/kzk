@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import "./footer.css";
 
@@ -16,7 +15,7 @@ const Footer = () => {
       <div className="kzk-footer-main">
         <div className="kzk-footer-col kzk-footer-brand">
           <h3 className="kzk-footer-tagline-head">
-            KZK LLC is here to design <br />
+            KZK Services is here to design <br />
             <span className="kzk-footer-grad">a website that grows your brand.</span>
           </h3>
           <p className="kzk-footer-tagline">
@@ -56,6 +55,7 @@ const Footer = () => {
             <li><Link href="/contact-us">Contact Us</Link></li>
             <li><Link href="/portfolio">Our Portfolio</Link></li>
             <li><Link href="/google-my-business">Google My Business</Link></li>
+            <li><Link href="/pay-now">Pay Now</Link></li>
           </ul>
         </div>
 
@@ -75,12 +75,7 @@ const Footer = () => {
 
       <div className="kzk-footer-call">
         <div className="kzk-footer-call-inner">
-          <div>
-            <span className="kzk-footer-call-label">Call for support</span>
-            <a href="tel:+14435298897" className="kzk-footer-call-num">
-              (443) 529-8897
-            </a>
-          </div>
+          <span className="kzk-footer-call-label">Follow KZK Services</span>
           <div className="kzk-footer-social">
             <a
               href="https://www.facebook.com/profile.php?id=100084707501999"
@@ -123,7 +118,7 @@ const Footer = () => {
       </div>
 
       <div className="kzk-footer-bottom">
-        <p>© {year} KZK Company LLC · All Rights Reserved</p>
+        <p>© {year} KZK Services · All Rights Reserved</p>
         <div className="kzk-footer-bottom-links">
           <Link href="/privacy-policy">Privacy Policy</Link>
           <span>·</span>

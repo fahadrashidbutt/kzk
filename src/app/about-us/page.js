@@ -33,11 +33,14 @@ const values = [
   },
 ];
 
+const FOUNDED_YEAR = 2013;
+const yearsOfCraft = new Date().getFullYear() - FOUNDED_YEAR;
+
 const stats = [
   { num: "150+", label: "Projects Delivered" },
   { num: "50+", label: "Experts on Team" },
   { num: "98%", label: "Client Retention" },
-  { num: "12+", label: "Years of Craft" },
+  { num: `${yearsOfCraft}+`, label: "Years of Craft" },
 ];
 
 const Page = () => {

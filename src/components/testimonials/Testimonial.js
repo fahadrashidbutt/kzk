@@ -10,21 +10,21 @@ const testimonials = [
   {
     title: "Saved Our Business",
     text:
-      "Lost my customers because of the non-friendly website. Luckily, KZK LLC saved me from future losses and strengthened my business's backbone with its services. Will never leave them and continue to thrive in the online market with them.",
+      "Lost my customers because of the non-friendly website. Luckily, KZK Services saved me from future losses and strengthened my business's backbone with its services. Will never leave them and continue to thrive in the online market with them.",
     name: "Sarah Mitchell",
     date: "1 week ago",
   },
   {
     title: "Doubled My Sales",
     text:
-      "Most of the audience that comes to my website is irrelevant and generates no money for me. All this fuss made me scroll through the agency market, and I came across KZK LLC. They do magic and double my sales in weeks.",
+      "Most of the audience that comes to my website is irrelevant and generates no money for me. All this fuss made me scroll through the agency market, and I came across KZK Services. They do magic and double my sales in weeks.",
     name: "David Chen",
     date: "2 weeks ago",
   },
   {
     title: "Top-Class SEO",
     text:
-      "The KZK team amp my website ranking with top-class SEO and ad marketing. They just nail it with their performance. I would continue to move with them to generate more revenue for my business!",
+      "The KZK team amplified my website ranking with top-class SEO and ad marketing. They just nailed it with their performance. I'll continue working with them to generate more revenue for my business!",
     name: "Jason Martin",
     date: "1 month ago",
   },
@@ -122,7 +122,7 @@ const Testimonial = () => {
       return x;
     };
 
-    const tick = (time, deltaTime) => {
+    const tick = (_time, deltaTime) => {
       if (!isDragging && !isHovering) {
         offset -= speedPxPerSec * (deltaTime / 1000);
       }
@@ -197,35 +197,51 @@ const Testimonial = () => {
     };
   }, []);
 
-  // Render one full set of cards (summary + 3 reviews) with set-prefixed keys
-  const renderSet = (setId) => (
-    <>
-      <div key={`s-${setId}`} className="kzk-tt-card kzk-tt-summary">
-        <div className="kzk-tt-summary-label">Excellent</div>
-        <Stars count={5} />
-        <div className="kzk-tt-summary-meta">
-          Based on <strong>200+ reviews</strong>
-        </div>
-        <div className="kzk-tt-summary-brand">
-          <span className="kzk-tt-summary-brand-icon">
-            <StarIcon />
-          </span>
-          KZK Trusted Agency
-        </div>
-      </div>
-      {testimonials.map((t, i) => (
-        <div key={`${setId}-${i}`} className="kzk-tt-card">
-          <div className="kzk-tt-card-head">
-            <Stars count={5} />
-            <span className="kzk-tt-date">{t.date}</span>
+  // Render one full set of cards (summary + 3 reviews). The marquee renders
+  // two identical sets back-to-back to enable the seamless loop; the second
+  // set is a visual clone and must be hidden from assistive tech to avoid
+  // duplicated landmarks/content.
+  const renderSet = (setId, isClone = false) => {
+    const ariaHidden = isClone ? "true" : undefined;
+    const tabIndex = isClone ? -1 : undefined;
+    return (
+      <>
+        <div
+          key={`s-${setId}`}
+          className="kzk-tt-card kzk-tt-summary"
+          aria-hidden={ariaHidden}
+        >
+          <div className="kzk-tt-summary-label">Excellent</div>
+          <Stars count={5} />
+          <div className="kzk-tt-summary-meta">
+            Based on <strong>200+ reviews</strong>
           </div>
-          <h3 className="kzk-tt-card-title">{t.title}</h3>
-          <p className="kzk-tt-card-text">{t.text}</p>
-          <div className="kzk-tt-card-name">{t.name}</div>
+          <div className="kzk-tt-summary-brand">
+            <span className="kzk-tt-summary-brand-icon">
+              <StarIcon />
+            </span>
+            KZK Trusted Agency
+          </div>
         </div>
-      ))}
-    </>
-  );
+        {testimonials.map((t, i) => (
+          <div
+            key={`${setId}-${i}`}
+            className="kzk-tt-card"
+            aria-hidden={ariaHidden}
+            tabIndex={tabIndex}
+          >
+            <div className="kzk-tt-card-head">
+              <Stars count={5} />
+              <span className="kzk-tt-date">{t.date}</span>
+            </div>
+            <h3 className="kzk-tt-card-title">{t.title}</h3>
+            <p className="kzk-tt-card-text">{t.text}</p>
+            <div className="kzk-tt-card-name">{t.name}</div>
+          </div>
+        ))}
+      </>
+    );
+  };
 
   return (
     <section className="kzk-tt-section" ref={sectionRef}>
@@ -249,22 +265,10 @@ const Testimonial = () => {
         <div className="kzk-tt-marquee" ref={wrapRef}>
           <div className="kzk-tt-marquee-track" ref={trackRef}>
             {renderSet("a")}
-            {renderSet("b")}
+            {renderSet("b", true)}
           </div>
         </div>
       </div>
-
-      {/* <div className="kzk-tt-container">
-        <div className="kzk-tt-hint">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-          Drag to explore reviews
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </div>
-      </div> */}
     </section>
   );
 };

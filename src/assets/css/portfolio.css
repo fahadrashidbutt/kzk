@@ -1,9 +1,4 @@
-/* Portfolio Page Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Portfolio Page Styles — base reset lives in globals.css */
 
 /* Hero Section */
 .hero-section {

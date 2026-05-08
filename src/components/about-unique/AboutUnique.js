@@ -51,15 +51,17 @@ const capabilities = [
   },
 ];
 
+const FOUNDED_YEAR = 2013;
+const yearsOfCraft = new Date().getFullYear() - FOUNDED_YEAR;
+
 const stats = [
-  { num: 12, suffix: "+", label: "Years of Craft", pos: "tl" },
+  { num: yearsOfCraft, suffix: "+", label: "Years of Craft", pos: "tl" },
   { num: 150, suffix: "+", label: "Projects Shipped", pos: "tr" },
   { num: 98, suffix: "%", label: "Client Retention", pos: "br" },
 ];
 
 const AboutUnique = () => {
   const sectionRef = useRef(null);
-  const numbersRef = useRef([]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -148,27 +150,29 @@ const AboutUnique = () => {
         }
       );
 
-      // Animated number counters inside badges
-      numbersRef.current.forEach((node) => {
-        if (!node) return;
+      // Animated number counters — query the DOM directly so we don't depend
+      // on the ref-callback array (which can carry stale entries across React's
+      // dev double-mount) and use closure for the tween target.
+      section.querySelectorAll(".about-uniq-badge [data-target]").forEach((node) => {
         const target = parseInt(node.getAttribute("data-target"), 10);
+        if (Number.isNaN(target)) return;
+        const counter = { val: 0 };
         ScrollTrigger.create({
           trigger: node,
-          start: "top 92%",
+          start: "top 95%",
           once: true,
           onEnter: () => {
-            gsap.to(
-              { val: 0 },
-              {
-                val: target,
-                duration: 2.2,
-                snap: { val: 1 },
-                ease: "power2.out",
-                onUpdate: function () {
-                  node.innerText = Math.floor(this.targets()[0].val);
-                },
-              }
-            );
+            gsap.to(counter, {
+              val: target,
+              duration: 2,
+              ease: "power2.out",
+              onUpdate: () => {
+                node.textContent = String(Math.floor(counter.val));
+              },
+              onComplete: () => {
+                node.textContent = String(target);
+              },
+            });
           },
         });
       });
@@ -237,10 +241,6 @@ const AboutUnique = () => {
     };
   }, []);
 
-  const addNum = (el) => {
-    if (el && !numbersRef.current.includes(el)) numbersRef.current.push(el);
-  };
-
   return (
     <section className="about-uniq" ref={sectionRef}>
       <div className="about-uniq-bg-deco" aria-hidden="true" />
@@ -282,7 +282,7 @@ const AboutUnique = () => {
               className={`about-uniq-badge about-uniq-badge-${s.pos}`}
             >
               <div className="about-uniq-badge-num">
-                <span ref={addNum} data-target={s.num}>0</span>
+                <span data-target={s.num}>0</span>
                 <span className="about-uniq-badge-suffix">{s.suffix}</span>
               </div>
               <div className="about-uniq-badge-label">{s.label}</div>

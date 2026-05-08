@@ -10,7 +10,6 @@ const navLinks = [
   { path: "/", label: "Home" },
   { path: "/about-us", label: "About Us" },
   { path: "/portfolio", label: "Portfolio" },
-  { path: "/google-my-business", label: "Google My Business" },
   { path: "/contact-us", label: "Contact" },
 ];
 
@@ -22,6 +21,7 @@ const servicesLinks = [
   { path: "/services/designing", label: "Designing" },
   { path: "/services/content-marketing", label: "Content Marketing" },
   { path: "/services/google-adwords", label: "Google AdWords" },
+  { path: "/google-my-business", label: "Google My Business" },
 ];
 
 const Menu = () => {
@@ -134,9 +134,6 @@ const Menu = () => {
         </nav>
 
         <div className="kzk-nav-cta">
-          <Link href="/pay-now" className="kzk-nav-pay">
-            Pay Now
-          </Link>
           <button
             type="button"
             className={`kzk-nav-burger ${mobileOpen ? "is-open" : ""}`}
@@ -150,7 +147,11 @@ const Menu = () => {
       </div>
 
       {/* Mobile overlay */}
-      <div className={`kzk-nav-mobile ${mobileOpen ? "is-open" : ""}`}>
+      <div
+        className={`kzk-nav-mobile ${mobileOpen ? "is-open" : ""}`}
+        aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
+      >
         <nav className="kzk-nav-mobile-list" aria-label="Mobile">
           {navLinks.slice(0, 1).map((l) => (
             <Link key={l.path} href={l.path} className="kzk-nav-mobile-link">
@@ -170,9 +171,6 @@ const Menu = () => {
               {l.label}
             </Link>
           ))}
-          <Link href="/pay-now" className="kzk-nav-mobile-pay">
-            Pay Now
-          </Link>
         </nav>
       </div>
     </header>

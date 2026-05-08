@@ -152,27 +152,6 @@
   gap: 12px;
   flex-shrink: 0;
 }
-.kzk-nav-pay {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 22px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--grad-accent);
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, gap 0.25s ease;
-  box-shadow: 0 4px 20px rgba(24, 161, 215, 0.25);
-}
-.kzk-nav-pay:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(24, 161, 215, 0.45);
-  gap: 12px;
-}
 
 /* Burger */
 .kzk-nav-burger {
@@ -207,12 +186,14 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile overlay */
+/* Mobile overlay — hidden completely on desktop so it never co-exists
+   with the desktop nav in the a11y tree. On mobile it stays in the DOM
+   but inert/aria-hidden until opened. */
 .kzk-nav-mobile {
   position: fixed;
   inset: 70px 0 0 0;
   background: linear-gradient(180deg, #050810 0%, #0a0f1a 100%);
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 30px 28px;
   z-index: 99;
@@ -265,27 +246,13 @@
   color: var(--accent-2);
   padding-left: 22px;
 }
-.kzk-nav-mobile-pay {
-  margin-top: 24px;
-  text-align: center;
-  padding: 16px 24px;
-  background: var(--grad-accent);
-  color: #fff;
-  border-radius: 50px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-size: 14px;
-  box-shadow: 0 10px 30px rgba(24, 161, 215, 0.3);
-}
-
-/* Responsive */
+/* Responsive — at each breakpoint, only ONE nav is in display flow. */
 @media (max-width: 1100px) {
   .kzk-nav-links { display: none; }
   .kzk-nav-burger { display: inline-flex; }
+  .kzk-nav-mobile { display: flex; }
 }
 @media (max-width: 600px) {
   .kzk-nav-inner { padding: 0 20px; gap: 16px; }
   .kzk-nav-logo-text { display: none; }
-  .kzk-nav-pay { padding: 10px 16px; font-size: 12px; }
 }

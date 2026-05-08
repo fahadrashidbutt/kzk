@@ -17,8 +17,12 @@ const openSans = Open_Sans({
 });
 
 export const metadata = {
-  title: "KZK Services",
-  description: "KZK Services",
+  title: {
+    default: "KZK Services | Premier Digital Agency for SEO, Web & App Development",
+    template: "%s | KZK Services",
+  },
+  description:
+    "KZK Services is a US digital agency blending SEO, web development, app development, design and growth strategy into one team that helps ambitious brands outrank, outperform and outlast their competition.",
 };
 
 export default function RootLayout({ children }) {

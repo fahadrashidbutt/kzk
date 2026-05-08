@@ -96,7 +96,7 @@ const features = [
   {
     icon: "◎",
     title: "Result Oriented Projects",
-    text: "We guarantee that cold leads convert into paying customers. There’s no zero-result outcome on our watch — only growth.",
+    text: "We guarantee that cold leads convert into paying customers. We don't ship work that fails to deliver — only growth.",
   },
   {
     icon: "★",
@@ -118,11 +118,14 @@ const features = [
 // Show 4 portfolios on homepage: 1 featured + 3 supporting
 const projects = portfolios.slice(0, 4);
 
+const FOUNDED_YEAR = 2013;
+const yearsOfCraft = new Date().getFullYear() - FOUNDED_YEAR;
+
 const heroStats = [
   { num: "150+", label: "Projects Delivered" },
   { num: "4.9★", label: "Average Rating" },
   { num: "98%", label: "Client Satisfaction" },
-  { num: "12+", label: "Years Experience" },
+  { num: `${yearsOfCraft}+`, label: "Years Experience" },
   { num: "50+", label: "Experts on Team" },
 ];
 
@@ -141,7 +144,7 @@ const seoTypes = [
   },
   {
     title: "Local SEO",
-    text: "Use local strategies through posting and other tricks to provide you with the blast ranking.",
+    text: "Local-pack tactics, GBP posts and review-velocity work that put your business at the top of the map for nearby searchers.",
   },
 ];
 
@@ -194,7 +197,6 @@ const processSteps = [
 
 export default function Home() {
   const heroRef = useRef(null);
-  const numbersRef = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -340,27 +342,30 @@ export default function Home() {
           );
         });
 
-      // Animated counters
-      numbersRef.current.forEach((node) => {
-        if (!node) return;
+      // Animated counters — query the DOM directly so we don't rely on the
+      // ref-callback array (which can accumulate stale entries across React's
+      // dev double-mount). Closure captures the obj reference, which is more
+      // reliable than `this.targets()[0]` inside the onUpdate.
+      document.querySelectorAll(".kzk-stats [data-target]").forEach((node) => {
         const target = parseInt(node.getAttribute("data-target"), 10);
+        if (Number.isNaN(target)) return;
+        const counter = { val: 0 };
         ScrollTrigger.create({
           trigger: node,
-          start: "top 90%",
+          start: "top 95%",
           once: true,
           onEnter: () => {
-            gsap.to(
-              { val: 0 },
-              {
-                val: target,
-                duration: 2.2,
-                snap: { val: 1 },
-                ease: "power2.out",
-                onUpdate: function () {
-                  node.innerText = Math.floor(this.targets()[0].val);
-                },
-              }
-            );
+            gsap.to(counter, {
+              val: target,
+              duration: 2,
+              ease: "power2.out",
+              onUpdate: () => {
+                node.textContent = String(Math.floor(counter.val));
+              },
+              onComplete: () => {
+                node.textContent = String(target);
+              },
+            });
           },
         });
       });
@@ -377,10 +382,6 @@ export default function Home() {
     };
   }, []);
 
-  const addNum = (el) => {
-    if (el && !numbersRef.current.includes(el)) numbersRef.current.push(el);
-  };
-
   return (
     <main className="kzk-home">
       {/* HERO — centered single-column layout */}
@@ -392,7 +393,9 @@ export default function Home() {
         <div className="kzk-container kzk-hero-inner">
           <span className="kzk-hero-pill">
             <span className="kzk-hero-pill-tag">NEW</span>
-            Now Booking Projects for 2026
+            <span className="kzk-hero-pill-text">
+              Now booking projects for 2026
+            </span>
           </span>
 
           <h1 className="kzk-hero-title">
@@ -410,6 +413,12 @@ export default function Home() {
             <Link href="/contact-us" className="kzk-btn-primary kzk-btn-hero">
               Start a Project
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <Link href="/portfolio" className="kzk-btn-pill kzk-btn-pill-light">
+              View Our Work
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
@@ -450,14 +459,12 @@ export default function Home() {
                 <div className="kzk-service-card-icon">{s.icon}</div>
                 <h3 className="kzk-service-card-title">{s.title}</h3>
                 <p className="kzk-service-card-text">{s.desc}</p>
-                {i === 1 && (
-                  <span className="kzk-service-card-more">
-                    Learn More
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                )}
+                <span className="kzk-service-card-more">
+                  Learn More
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </span>
               </Link>
             ))}
           </div>
@@ -476,8 +483,8 @@ export default function Home() {
                 <span className="kzk-grad">Optimization Strategy</span>
               </h2>
               <p className="kzk-section-text">
-                We will boost your ranking and money now without spending a
-                penny on a new website. We are proud of our track record.
+                We&apos;ll lift your rankings and revenue without you spending
+                a penny on a new website. Our track record speaks for itself.
               </p>
               <ul className="kzk-seo-bullets">
                 <li>
@@ -582,25 +589,25 @@ export default function Home() {
           <div className="kzk-stats kzk-reveal">
             <div className="kzk-stat">
               <div className="kzk-stat-num">
-                <span ref={addNum} data-target="28">0</span>+
+                <span data-target="28">0</span>+
               </div>
               <div className="kzk-stat-label">Accolades Earned</div>
             </div>
             <div className="kzk-stat">
               <div className="kzk-stat-num">
-                <span ref={addNum} data-target="56">0</span>K+
+                <span data-target="56">0</span>K+
               </div>
               <div className="kzk-stat-label">Lines of Code</div>
             </div>
             <div className="kzk-stat">
               <div className="kzk-stat-num">
-                <span ref={addNum} data-target="50">0</span>+
+                <span data-target="50">0</span>+
               </div>
               <div className="kzk-stat-label">Expert Advisors</div>
             </div>
             <div className="kzk-stat">
               <div className="kzk-stat-num">
-                <span ref={addNum} data-target="150">0</span>+
+                <span data-target="150">0</span>+
               </div>
               <div className="kzk-stat-label">Projects Completed</div>
             </div>

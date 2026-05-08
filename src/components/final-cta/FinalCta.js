@@ -4,11 +4,11 @@ import "./final-cta.css";
 const FinalCta = () => (
   <section className="fc-section">
     <div className="fc-container">
-      <div className="fc-outer kzk-reveal">
+      <div className="fc-outer">
         <div className="fc-card">
           <span className="fc-eyebrow">
             <span className="fc-eyebrow-line" />
-            Available For New Project
+            Available For New Projects
             <span className="fc-eyebrow-line" />
           </span>
           <h2 className="fc-title">

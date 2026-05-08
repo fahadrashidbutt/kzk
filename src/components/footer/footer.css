@@ -151,16 +151,6 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--accent-2);
-  margin-bottom: 4px;
-}
-.kzk-footer-call-num {
-  font-size: 1.6rem;
-  font-weight: 800;
-  background: var(--grad-accent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  letter-spacing: 0.5px;
 }
 .kzk-footer-social {
   display: flex;

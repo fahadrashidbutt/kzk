@@ -3,16 +3,13 @@ import Image from "next/image";
 import "../../assets/css/inner-pages.css";
 import "./gmb.css";
 import FinalCta from "../../components/final-cta/FinalCta";
-// TODO: drop your real GMB images into src/assets/images/google-my-business/ then
-// switch these imports. The folder exists but is currently empty, so for now we fall
-// back to images that exist in the project so the page builds.
 import gmbHero from "../../assets/images/google-my-business/gmb-banner.jpg";
 import gmbGuide from "../../assets/images/google-my-business/Google-My-Business-vec.jpg";
 
 export const metadata = {
-  title: "Google My Business Services in USA | KZK Services",
+  title: "Google Business Profile Services in the USA | KZK Services",
   description:
-    "KZK helps thousands of businesses rank better in Google searches with affordable, effective Google My Business optimization, GMB profile management and local SEO in the USA.",
+    "Local-pack rankings, review velocity, and Maps visibility done right. KZK Services optimizes Google Business Profile, manages your listings, and grows local SEO across the USA.",
 };
 
 const features = [
@@ -34,7 +31,7 @@ const features = [
       </svg>
     ),
     title: "Compile Report & Comprehensive Management",
-    text: "We manage Bing, Apple Maps, and GMB with the utmost perfection and then provide the monthly report to you so that you can check the progress and traffic insights. This feature makes our Google My Business services in USA world-class.",
+    text: "We manage Bing Places, Apple Maps and Google Business Profile end-to-end and send you a monthly report so you can track progress and traffic insights at a glance. It's the kind of reporting that makes our local SEO work in the USA stand out.",
   },
   {
     icon: (
@@ -44,8 +41,8 @@ const features = [
         <circle cx="12" cy="12" r="2" />
       </svg>
     ),
-    title: "Optimize Your Profile & Limit Clients",
-    text: "“Optimizing the profile and limiting the client” is the basic and foremost step to make your business top of the mark in the search market. Therefore we optimize the profile by completing it and also limit the client to prevent your managers from overloading.",
+    title: "Optimize Your Profile End-to-End",
+    text: "Profile optimization is the foundation of local-search visibility. We complete every field, structure your services and categories correctly, and make sure your profile is set up to convert searches into walk-ins.",
   },
   {
     icon: (
@@ -56,7 +53,7 @@ const features = [
       </svg>
     ),
     title: "Expand Your Online Presence Now",
-    text: "To provide the best Google My Business services in USA, KZK IT experts is the most cost-effective services company with no spam and hidden charges. If you have any problem with your new listing, no worries — we will treat you just like a royal customer and take care of it for you.",
+    text: "To provide the best Google Business Profile services in the USA, KZK Services is the most cost-effective agency with no spam and no hidden charges. If you ever run into a listing issue, we'll treat you like a VIP and take care of it.",
   },
 ];
 
@@ -110,7 +107,7 @@ const steps = [
   },
   {
     title: "Update Content For Engagement",
-    text: "All the process of GMB ranking depends on the content. Therefore to give outclass Google My Business services in USA, we add engaging content regularly to rank your local business. We research the perfect keywords and insert them into the content in a natural flow.",
+    text: "Local search ranking lives or dies by content. We publish engaging GBP posts and updates regularly so your listing keeps climbing — and we research the right keywords and weave them in naturally, never stuffed.",
   },
   {
     title: "Maintain & Off-Page SEO",
@@ -202,7 +199,6 @@ export default function GoogleMyBusinessPage() {
             src={gmbHero}
             alt="KZK Google My Business services"
             priority
-            placeholder="blur"
           />
           <div className="gmb-hero-image-glow" />
         </div>
@@ -214,17 +210,16 @@ export default function GoogleMyBusinessPage() {
           <div className="gmb-lead">
             <span className="gmb-lead-tag">★ Getting Started</span>
             <h2 className="gmb-lead-title">
-              KZK Google My Business{" "}
-              <span className="ip-grad">Service In USA</span> For Your Startup
+              KZK Google Business Profile{" "}
+              <span className="ip-grad">Services for the USA</span>
             </h2>
             <p className="gmb-lead-text">
-              Don&apos;t waste more time on inefficient SEO practices! Market
-              your local business with great listings on Google, Facebook, and
-              Yelp. KZK services are here to help thousands of businesses to
-              rank better in Google searches with its Google My Business
-              services in USA. We help you manage all aspects of your business,
-              from improving your brand visibility to managing the Google My
-              Business listings in your local search results.
+              Stop wasting time on inefficient SEO. Market your local business
+              with strong listings across Google, Facebook and Yelp. KZK
+              Services helps brands rank better in local search with
+              full-service Google Business Profile optimization — managing
+              every part of the listing, from brand visibility to local-pack
+              presence in the markets your customers actually search.
             </p>
           </div>
         </div>
@@ -241,14 +236,13 @@ export default function GoogleMyBusinessPage() {
                 <span className="ip-grad">Services In USA?</span>
               </h2>
               <p className="gmb-why-text">
-                KZK IT Services is a leader in delivering affordable and
-                effective Google My Business services in USA for your business
-                needs. We have solved countless problems, and we can assist you
-                in growing your business. Our ultimate goal is to help you grow
-                your business, provide you with the best solutions, ensure our
-                customer satisfaction and make you successful in the market.
-                Here are the diamond star features of KZK that make us “a wise
-                choice.”
+                KZK Services is a leader in delivering affordable, effective
+                Google Business Profile services across the USA. We've solved
+                countless local-search problems and we can do the same for
+                you. Our goal is simple: help you grow your business, ship the
+                best possible solutions, and earn lasting customer
+                satisfaction. Here are the standout features that make KZK a
+                wise choice.
               </p>
 
               <div className="gmb-features">
@@ -348,7 +342,6 @@ export default function GoogleMyBusinessPage() {
               <Image
                 src={gmbGuide}
                 alt="KZK guides you through every step of GMB optimization"
-                placeholder="blur"
               />
               <div className="gmb-guide-image-glow" />
               <div className="gmb-guide-floating">
