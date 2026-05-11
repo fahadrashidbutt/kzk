@@ -44,7 +44,7 @@ const features = [
   },
   {
     title: "Dedicated Support",
-    text: "Questions about your invoice? Reach our billing team Mon–Sat, 9am–6pm — we'll have an answer the same day.",
+    text: "Questions about your invoice? Reach our billing team Monday to Saturday, 9:00 AM to 6:00 PM — we'll have an answer the same day.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 12c0 4.97-4.03 9-9 9-1.5 0-2.93-.37-4.18-1.02L3 21l1.02-4.82A9 9 0 1 1 21 12z" />
@@ -129,15 +129,6 @@ const Page = () => {
                   publishable-key="pk_live_51Shh3VJEsQA2bcxNFvMzjbHC1LBef6g26OgbCOcI1ltPV3EyC8PQ02pMwvtilfHRQqiMVtRBXvP9PKq8Mis50oJQ00XWO2cx2d"
                 ></stripe-buy-button>
               </div>
-
-              <div className="pay-card-methods">
-                <span>Visa</span>
-                <span>Mastercard</span>
-                <span>Maestro</span>
-                <span>American Express</span>
-                <span>Apple Pay</span>
-                <span>Google Pay</span>
-              </div>
             </div>
 
             {/* PAYPAL */}
@@ -160,13 +151,6 @@ const Page = () => {
 
               <div className="pay-paypal-wrap">
                 <PayPalButton hostedButtonId="A8H8S8R3RGJ82" />
-              </div>
-
-              <div className="pay-card-methods">
-                <span>PayPal</span>
-                <span>Venmo</span>
-                <span>Bank Transfer</span>
-                <span>PayPal Credit</span>
               </div>
             </div>
           </div>

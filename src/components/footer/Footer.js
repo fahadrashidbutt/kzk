@@ -30,7 +30,13 @@ const Footer = () => {
           <ul className="kzk-footer-contact">
             <li>
               <span className="kzk-footer-icon">◉</span>
-              <span>1519 Hopewell Ave, Essex, MD 21221</span>
+              <a
+                href="https://maps.app.goo.gl/HfsYAibPTE7x2h6Q9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                1519 Hopewell Ave, Essex, MD 21221
+              </a>
             </li>
             <li>
               <span className="kzk-footer-icon">✉</span>
@@ -38,7 +44,7 @@ const Footer = () => {
             </li>
             <li>
               <span className="kzk-footer-icon">◷</span>
-              <span>Mon – Sat · 9:00 AM – 6:00 PM</span>
+              <span>Monday to Saturday: 9:00 AM to 6:00 PM</span>
             </li>
             <li>
               <span className="kzk-footer-icon">☎</span>

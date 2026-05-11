@@ -276,7 +276,13 @@ export default function GoogleMyBusinessPage() {
                     <span className="gmb-contact-icon">
                       <PinIcon />
                     </span>
-                    <span>1519 Hopewell Ave, Essex, MD 21221</span>
+                    <a
+                      href="https://maps.app.goo.gl/HfsYAibPTE7x2h6Q9"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      1519 Hopewell Ave, Essex, MD 21221
+                    </a>
                   </div>
                   <div className="gmb-contact-item">
                     <span className="gmb-contact-icon">

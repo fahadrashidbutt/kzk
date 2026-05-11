@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./testimonial.css";
@@ -51,7 +51,11 @@ const Testimonial = () => {
   const trackRef = useRef(null);
   const wrapRef = useRef(null);
 
-  useEffect(() => {
+  // useLayoutEffect — cleanup runs synchronously during React's unmount
+  // commit phase, BEFORE React removes the DOM. That timing is what keeps
+  // the gsap.ticker tick (which writes `transform` to the marquee track
+  // every frame) from racing React's removal of the track's section.
+  useLayoutEffect(() => {
     const section = sectionRef.current;
     const track = trackRef.current;
     const wrap = wrapRef.current;

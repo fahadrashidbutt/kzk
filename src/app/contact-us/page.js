@@ -129,14 +129,20 @@ const Page = () => {
                   <span className="contact-info-icon">◉</span>
                   <div>
                     <div className="contact-info-label">Office</div>
-                    <span>1519 Hopewell Ave, Essex, MD 21221</span>
+                    <a
+                      href="https://maps.app.goo.gl/HfsYAibPTE7x2h6Q9"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      1519 Hopewell Ave, Essex, MD 21221
+                    </a>
                   </div>
                 </li>
                 <li>
                   <span className="contact-info-icon">◷</span>
                   <div>
                     <div className="contact-info-label">Hours</div>
-                    <span>Mon – Sat · 9:00 AM – 6:00 PM</span>
+                    <span>Monday to Saturday: 9:00 AM to 6:00 PM</span>
                   </div>
                 </li>
               </ul>

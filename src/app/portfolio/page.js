@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,12 +18,21 @@ export default function Portfolio() {
   // Use the real portfolios with the slug as the key
   const projects = portfolios;
 
-  useEffect(() => {
-    // Create floating particles (clear any leftovers first to prevent dupes on hot-reload)
+  // useLayoutEffect — its cleanup runs synchronously during React's unmount
+  // commit phase BEFORE the DOM is torn down. This is the only timing that
+  // guarantees GSAP releases every node it's pinning/animating before React
+  // tries to remove those nodes (which is what produces the
+  // "removeChild: not a child of this node" runtime error on navigation).
+  useLayoutEffect(() => {
+    // Floating particles. Tracked in an array so cleanup can drop our
+    // imperatively-created nodes BEFORE React removes their container,
+    // avoiding the "removeChild not a child of this node" race on navigation.
     const particleContainer = document.querySelector(".hero-particles");
+    const ownedParticles = [];
     if (particleContainer) {
-      particleContainer.replaceChildren();
-      for (let i = 0; i < 80; i++) {
+      // Reduced from 80 → 36 — the GPU cost of 80 animated nodes is the
+      // single biggest source of frame drops on the page.
+      for (let i = 0; i < 36; i++) {
         const particle = document.createElement("div");
         particle.classList.add("particle");
         particle.style.left = Math.random() * 100 + "%";
@@ -33,57 +42,35 @@ export default function Portfolio() {
         particle.style.width = Math.random() * 3 + 1 + "px";
         particle.style.height = particle.style.width;
         particleContainer.appendChild(particle);
+        ownedParticles.push(particle);
       }
     }
 
-    // Mouse parallax (window listener — manual cleanup needed)
-    const handleMouseMove = (e) => {
-      const xPos = (e.clientX / window.innerWidth - 0.5) * 40;
-      const yPos = (e.clientY / window.innerHeight - 0.5) * 40;
-      gsap.to(".floating-orb-1", { x: xPos * 0.4, y: yPos * 0.4, duration: 1, ease: "power2.out" });
-      gsap.to(".floating-orb-2", { x: xPos * -0.3, y: yPos * -0.3, duration: 1, ease: "power2.out" });
-      gsap.to(".floating-orb-3", { x: xPos * 0.2, y: yPos * 0.6, duration: 1, ease: "power2.out" });
-      gsap.to(".hero-title-large", { x: xPos * 0.1, y: yPos * 0.1, duration: 1, ease: "power2.out" });
+    // Window-level parallax. Throttled to one tween per animation frame so
+    // it can never compete with the horizontal-scroll scrub.
+    let pendingMouse = null;
+    let rafId = 0;
+    const applyParallax = () => {
+      rafId = 0;
+      if (!pendingMouse) return;
+      const { x, y } = pendingMouse;
+      gsap.to(".floating-orb-1", { x: x * 0.4, y: y * 0.4, duration: 1, ease: "power2.out", overwrite: "auto" });
+      gsap.to(".floating-orb-2", { x: x * -0.3, y: y * -0.3, duration: 1, ease: "power2.out", overwrite: "auto" });
+      gsap.to(".floating-orb-3", { x: x * 0.2, y: y * 0.6, duration: 1, ease: "power2.out", overwrite: "auto" });
     };
-    window.addEventListener("mousemove", handleMouseMove);
+    const handleMouseMove = (e) => {
+      pendingMouse = {
+        x: (e.clientX / window.innerWidth - 0.5) * 40,
+        y: (e.clientY / window.innerHeight - 0.5) * 40,
+      };
+      if (!rafId) rafId = requestAnimationFrame(applyParallax);
+    };
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
-    // 3D tilt effect on project cards (native listeners — manual cleanup needed)
-    const tiltCleanups = [];
-    const projectCards = document.querySelectorAll(".project-showcase");
-    projectCards.forEach((card) => {
-      const imageWrapper = card.querySelector(".project-image-wrapper");
-      if (!imageWrapper) return;
-      const onMove = (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 25;
-        const rotateY = (centerX - x) / 25;
-        gsap.to(imageWrapper, {
-          rotateY,
-          rotateX,
-          duration: 0.5,
-          ease: "power2.out",
-          transformPerspective: 1000,
-        });
-      };
-      const onLeave = () => {
-        gsap.to(imageWrapper, {
-          rotateY: 0,
-          rotateX: 0,
-          duration: 0.8,
-          ease: "elastic.out(1, 0.5)",
-        });
-      };
-      card.addEventListener("mousemove", onMove);
-      card.addEventListener("mouseleave", onLeave);
-      tiltCleanups.push(() => {
-        card.removeEventListener("mousemove", onMove);
-        card.removeEventListener("mouseleave", onLeave);
-      });
-    });
+    // (Previously: per-card 3D tilt with mousemove + GSAP rotate tweens.
+    // Removed — its tweens competed with the horizontal-scroll scrub on
+    // every mouse move, which is what caused the slide-change jerk. The
+    // hover-zoom on the image still provides interactive feedback.)
 
     // All GSAP / ScrollTrigger animations are scoped to a context so ctx.revert()
     // safely tears down pin-spacers and triggers without racing React unmounts.
@@ -143,41 +130,44 @@ export default function Portfolio() {
       gsap.to(".floating-orb-2", { y: -60, x: -50, duration: 9, repeat: -1, yoyo: true, ease: "sine.inOut" });
       gsap.to(".floating-orb-3", { y: 50, x: -30, duration: 11, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
-      // Hero scroll-fade
+      // Hero scroll-fade — `gsap.set` (NOT gsap.to with duration:0) so we
+      // don't create a fresh tween on every scroll frame. Tween-per-frame was
+      // saturating GSAP's queue and causing visible jank.
       ScrollTrigger.create({
         trigger: heroRef.current,
         start: "top top",
         end: "bottom top",
-        scrub: 1.5,
+        scrub: 1,
         onUpdate: (self) => {
-          const progress = self.progress;
-          gsap.to(".hero-content-center", {
-            y: -100 * progress,
-            opacity: 1 - progress * 0.7,
-            duration: 0,
-            overwrite: true,
-          });
-          gsap.to(".hero-title-large", {
-            scale: 1 - progress * 0.2,
-            duration: 0,
-            overwrite: true,
-          });
+          const p = self.progress;
+          const heroContent = document.querySelector(".hero-content-center");
+          const heroTitle = document.querySelector(".hero-title-large");
+          if (heroContent) {
+            gsap.set(heroContent, { y: -100 * p, opacity: 1 - p * 0.7 });
+          }
+          if (heroTitle) {
+            gsap.set(heroTitle, { scale: 1 - p * 0.2 });
+          }
         },
       });
 
-      // Horizontal scroll (pin: true) — ctx.revert() will safely unwrap the pin spacer
+      // Horizontal scroll. No snap — the track follows the user's scroll
+      // exactly and stops wherever they release. `scrub: 0.6` adds a hair
+      // of inertial smoothing so mouse-wheel detents (~120px discrete
+      // chunks) get interpolated into continuous motion instead of
+      // stepping. `pinType: "transform"` keeps everything on the GPU
+      // compositor and avoids pin-spacer DOM mutation.
       const horizontalSection = horizontalSectionRef.current;
       if (horizontalSection) {
         const sections = gsap.utils.toArray(".project-showcase");
-        const totalWidth = sections.length * window.innerWidth;
         gsap.to(sections, {
           xPercent: -100 * (sections.length - 1),
           ease: "none",
           scrollTrigger: {
             trigger: horizontalSection,
             start: "top top",
-            end: () => "+=" + (totalWidth - window.innerWidth),
-            scrub: 1.2,
+            end: () => "+=" + (sections.length - 1) * window.innerWidth,
+            scrub: 0.6,
             pin: true,
             pinType: "transform",
             anticipatePin: 1,
@@ -233,17 +223,30 @@ export default function Portfolio() {
     });
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      tiltCleanups.forEach((fn) => {
-        try { fn(); } catch {}
-      });
-      try {
-        ctx.revert();
-      } catch {
-        // Pin-spacer / ScrollTrigger cleanup can race React's unmount
-        // on navigation. Swallow benign DOM-removal errors so they don't
-        // bubble into the dev runtime overlay.
+      // 1. Stop any pending mousemove RAF so it can't fire after unmount.
+      if (rafId) {
+        try { cancelAnimationFrame(rafId); } catch {}
       }
+      pendingMouse = null;
+
+      // 2. Detach the window listener BEFORE we revert anything so a late
+      //    mousemove can't trigger gsap.to on disappearing elements.
+      try { window.removeEventListener("mousemove", handleMouseMove); } catch {}
+
+      // 3. Revert the gsap.context FIRST. Inside useLayoutEffect cleanup
+      //    this runs synchronously during React's commit phase, before the
+      //    DOM is torn down — so ctx.revert() can safely undo pin spacers,
+      //    transforms, and ScrollTrigger DOM attachments while every node
+      //    is still in the React-controlled tree.
+      try { ctx.revert(); } catch {}
+
+      // 4. Drop the particles we appended imperatively, also while the
+      //    container is still mounted. If left behind, React's reconciler
+      //    sees DOM-foreign children when it tears down the parent and
+      //    can throw the "removeChild not a child" runtime error.
+      ownedParticles.forEach((p) => {
+        try { p.remove(); } catch {}
+      });
     };
   }, []);
 

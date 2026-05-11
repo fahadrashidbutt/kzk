@@ -299,6 +299,9 @@
   justify-content: center;
   padding: 60px 80px;
   position: relative;
+  /* Single GPU hint — the GSAP xPercent tween is what actually moves it.
+     Adding translate3d here was redundant and caused extra paint work. */
+  will-change: transform;
 }
 
 .project-showcase-inner {

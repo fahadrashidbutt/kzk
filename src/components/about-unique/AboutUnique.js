@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -63,7 +63,10 @@ const stats = [
 const AboutUnique = () => {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
+  // useLayoutEffect — cleanup runs synchronously during React's unmount
+  // commit phase, BEFORE DOM removal, so GSAP releases every node it's
+  // driving before React tries to remove it.
+  useLayoutEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
@@ -232,12 +235,9 @@ const AboutUnique = () => {
     }, section);
 
     return () => {
-      try {
-        ctx.revert();
-      } catch {
-        // ScrollTrigger DOM cleanup can race React's unmount on navigation;
-        // the error is benign and the tree is being torn down anyway.
-      }
+      // ctx.revert() handles every ScrollTrigger + tween created inside the
+      // context, synchronously, in useLayoutEffect's commit-phase cleanup.
+      try { ctx.revert(); } catch {}
     };
   }, []);
 

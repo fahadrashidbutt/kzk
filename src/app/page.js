@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { gsap } from "gsap";
@@ -198,7 +198,12 @@ const processSteps = [
 export default function Home() {
   const heroRef = useRef(null);
 
-  useEffect(() => {
+  // useLayoutEffect — runs the GSAP setup synchronously after DOM mutations
+  // and (critically) runs its cleanup synchronously DURING React's unmount
+  // commit phase, BEFORE the DOM is torn down. This eliminates the
+  // "removeChild: not a child of this node" race that can surface on
+  // navigation away from this page.
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Hero entrance
       const heroTl = gsap.timeline();
@@ -372,13 +377,11 @@ export default function Home() {
     });
 
     return () => {
-      try {
-        ctx.revert();
-      } catch {
-        // GSAP/ScrollTrigger can race React's unmount on navigation;
-        // any DOM-cleanup error here is benign because the tree is about
-        // to be removed anyway. Swallow to avoid a fatal runtime overlay.
-      }
+      // ctx.revert() unwinds every tween + ScrollTrigger registered inside
+      // the context — including pin spacers — synchronously. Running this
+      // inside useLayoutEffect's cleanup guarantees it happens before React
+      // removes any of the nodes GSAP was driving.
+      try { ctx.revert(); } catch {}
     };
   }, []);
 
