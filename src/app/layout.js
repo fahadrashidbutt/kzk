@@ -16,13 +16,50 @@ const openSans = Open_Sans({
   weight: ["300", "400", "500", "600", "700", "800"],
 });
 
+const SITE_URL = "https://kzkservices.com";
+const SITE_TITLE =
+  "KZK Services | Premier Digital Agency for SEO, Web & App Development";
+const SITE_DESCRIPTION =
+  "KZK Services is a US digital agency blending SEO, web development, app development, design and growth strategy into one team that helps ambitious brands outrank, outperform and outlast their competition.";
+
 export const metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "KZK Services | Premier Digital Agency for SEO, Web & App Development",
+    default: SITE_TITLE,
     template: "%s | KZK Services",
   },
-  description:
-    "KZK Services is a US digital agency blending SEO, web development, app development, design and growth strategy into one team that helps ambitious brands outrank, outperform and outlast their competition.",
+  description: SITE_DESCRIPTION,
+  applicationName: "KZK Services",
+  keywords: [
+    "digital agency",
+    "SEO services",
+    "web development",
+    "app development",
+    "Google Business Profile",
+    "digital marketing",
+    "USA",
+  ],
+  authors: [{ name: "KZK Services" }],
+  creator: "KZK Services",
+  publisher: "KZK Services",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: "KZK Services",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export default function RootLayout({ children }) {

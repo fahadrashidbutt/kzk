@@ -157,22 +157,29 @@ export default function Portfolio() {
       // chunks) get interpolated into continuous motion instead of
       // stepping. `pinType: "transform"` keeps everything on the GPU
       // compositor and avoids pin-spacer DOM mutation.
+      // Horizontal scroll is desktop-only — on phones/tablets the pin
+      // hijacks vertical scroll and is hostile UX on touch. matchMedia
+      // gates it to ≥1024px and gsap.context handles teardown when the
+      // viewport drops below the breakpoint (e.g. rotation).
       const horizontalSection = horizontalSectionRef.current;
       if (horizontalSection) {
-        const sections = gsap.utils.toArray(".project-showcase");
-        gsap.to(sections, {
-          xPercent: -100 * (sections.length - 1),
-          ease: "none",
-          scrollTrigger: {
-            trigger: horizontalSection,
-            start: "top top",
-            end: () => "+=" + (sections.length - 1) * window.innerWidth,
-            scrub: 0.6,
-            pin: true,
-            pinType: "transform",
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
+        const mm = gsap.matchMedia();
+        mm.add("(min-width: 1024px)", () => {
+          const sections = gsap.utils.toArray(".project-showcase");
+          gsap.to(sections, {
+            xPercent: -100 * (sections.length - 1),
+            ease: "none",
+            scrollTrigger: {
+              trigger: horizontalSection,
+              start: "top top",
+              end: () => "+=" + (sections.length - 1) * window.innerWidth,
+              scrub: 0.6,
+              pin: true,
+              pinType: "transform",
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            },
+          });
         });
       }
 
@@ -335,7 +342,7 @@ export default function Portfolio() {
                         <span className="project-category">
                           {project.category}
                         </span>
-                        <h2 className="project-title">{project.title}</h2>
+                        <h3 className="project-title">{project.title}</h3>
                         <p className="project-description">{project.about}</p>
                         <div className="project-tags">
                           {project.tags.map((tag, i) => (
@@ -372,7 +379,7 @@ export default function Portfolio() {
       </section>
 
       {/* Featured Projects Grid */}
-      <section className="featured-section" id="featured-work">
+      <section className="featured-section" id="featured-work" tabIndex={-1}>
         <div className="featured-header">
           <span className="featured-badge">Featured Work</span>
           <h2 className="featured-title">Selected <span className="gradient">Projects</span></h2>

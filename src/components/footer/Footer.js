@@ -117,7 +117,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="kzk-footer-bigtype">
+      <div className="kzk-footer-bigtype" aria-hidden="true">
         <span className="kzk-footer-bigtype-text">
           KZK<span className="kzk-footer-bigtype-x">×</span>SERVICES
         </span>

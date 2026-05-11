@@ -2,7 +2,7 @@ import "../../assets/css/inner-pages.css";
 import "../../assets/css/legal.css";
 
 export const metadata = {
-  title: "Terms & Conditions | KZK Services",
+  title: "Terms & Conditions",
   description:
     "Terms & Conditions for KZK Services — including our Refund Policy and the conditions under which alternative services are offered.",
 };

@@ -387,3 +387,11 @@
   .about-uniq-story-p-first::first-letter { font-size: 3em; }
   .about-uniq-caps { grid-template-columns: 1fr; }
 }
+@media (max-width: 480px) {
+  /* 320–480px: prevent EST. 2013 watermark from forcing horizontal overflow */
+  .about-uniq-watermark { font-size: 3rem; top: 20px; letter-spacing: 4px; }
+  /* Pull floating badges further inset so they don't push past the image edge */
+  .about-uniq-badge-tl { top: 2%; left: 4px; }
+  .about-uniq-badge-tr { top: 12%; right: 4px; }
+  .about-uniq-badge-br { bottom: 2%; right: 8px; }
+}

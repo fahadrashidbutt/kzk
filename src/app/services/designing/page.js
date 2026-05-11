@@ -2,7 +2,7 @@ import ServiceTemplate from "@/components/service-template/ServiceTemplate";
 import designBanner from "../../../assets/images/services/desiging.jpg";
 
 export const metadata = {
-  title: "Designing | KZK Services",
+  title: "Designing",
   description:
     "Brand identity, UI/UX and product design that looks beautiful and converts — from logo to launch.",
 };
@@ -62,8 +62,8 @@ const data = {
     "Lottie",
   ],
   stats: [
-    { num: "200+", label: "Brand Projects" },
-    { num: "50+", label: "Design Awards" },
+    { num: "120+", label: "Brand Projects" },
+    { num: "20+", label: "Design Awards" },
     { num: "100%", label: "WCAG Compliant" },
     { num: "5★", label: "Client Rating" },
   ],

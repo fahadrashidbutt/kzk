@@ -35,8 +35,11 @@
   flex-shrink: 0;
 }
 .kzk-nav-logo img {
-  width: 48px;
+  width: 64px;
   height: auto;
+}
+@media (max-width: 600px) {
+  .kzk-nav-logo img { width: 52px; }
 }
 .kzk-nav-logo-text {
   font-weight: 800;
@@ -104,45 +107,148 @@
 .kzk-nav-dd.is-open .kzk-nav-dd-trigger svg {
   transform: rotate(180deg);
 }
-.kzk-nav-dd-panel {
+/* Mega menu panel — wide multi-column dropdown with icons and descriptions */
+.kzk-nav-mega {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
-  min-width: 230px;
+  width: min(760px, 92vw);
   background: rgba(13, 19, 32, 0.96);
-  border: 1px solid rgba(24, 161, 215, 0.18);
-  border-radius: 14px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(24, 161, 215, 0.22);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
-.kzk-nav-dd.is-open .kzk-nav-dd-panel {
+.kzk-nav-mega::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at top left, rgba(24, 161, 215, 0.15), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(62, 181, 224, 0.08), transparent 55%);
+}
+.kzk-nav-mega > * { position: relative; }
+.kzk-nav-dd.is-open .kzk-nav-mega {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
 }
-.kzk-nav-dd-link {
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.75);
-  border-radius: 10px;
-  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+
+/* Bridge — invisible hover area between trigger and panel so the cursor
+   can travel down without triggering mouseleave on the dropdown root. */
+.kzk-nav-mega::after {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 0;
+  right: 0;
+  height: 18px;
 }
-.kzk-nav-dd-link:hover {
-  background: rgba(24, 161, 215, 0.1);
+
+.kzk-nav-mega-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 6px 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.kzk-nav-mega-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
   color: var(--accent-2);
-  padding-left: 18px;
+}
+.kzk-nav-mega-tag {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.kzk-nav-mega-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.kzk-nav-mega-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+}
+.kzk-nav-mega-item:hover {
+  background: rgba(24, 161, 215, 0.08);
+  border-color: rgba(24, 161, 215, 0.22);
+  transform: translateX(2px);
+}
+
+.kzk-nav-mega-icon {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(24, 161, 215, 0.1);
+  border: 1px solid rgba(24, 161, 215, 0.22);
+  color: var(--accent-2);
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+.kzk-nav-mega-icon svg {
+  width: 18px;
+  height: 18px;
+}
+.kzk-nav-mega-item:hover .kzk-nav-mega-icon {
+  background: var(--grad-accent);
+  color: #fff;
+  transform: rotate(-4deg);
+}
+
+.kzk-nav-mega-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.kzk-nav-mega-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #fff;
+  text-transform: none;
+}
+.kzk-nav-mega-desc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.55);
+}
+.kzk-nav-mega-item:hover .kzk-nav-mega-desc {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 1240px) {
+  .kzk-nav-mega { width: min(680px, 90vw); }
+}
+@media (max-width: 1100px) {
+  .kzk-nav-mega { display: none; }
 }
 
 /* CTA */
@@ -152,12 +258,33 @@
   gap: 12px;
   flex-shrink: 0;
 }
+.kzk-nav-pay {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--grad-accent);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, gap 0.25s ease;
+  box-shadow: 0 4px 20px rgba(24, 161, 215, 0.25);
+}
+.kzk-nav-pay:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(24, 161, 215, 0.45);
+  gap: 12px;
+}
 
 /* Burger */
 .kzk-nav-burger {
   display: none;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
@@ -188,19 +315,25 @@
 
 /* Mobile overlay — hidden completely on desktop so it never co-exists
    with the desktop nav in the a11y tree. On mobile it stays in the DOM
-   but inert/aria-hidden until opened. */
+   but inert/aria-hidden until opened. Overlay covers the FULL viewport
+   (inset:0) with padding-top equal to nav height so the translucent
+   header sits above it cleanly — no gap, no page bleed-through. */
 .kzk-nav-mobile {
   position: fixed;
-  inset: 70px 0 0 0;
+  inset: 0;
   background: linear-gradient(180deg, #050810 0%, #0a0f1a 100%);
   display: none;
   flex-direction: column;
-  padding: 30px 28px;
+  padding: 110px 28px 30px;
   z-index: 99;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  overflow-y: auto;
+}
+@media (max-width: 600px) {
+  .kzk-nav-mobile { padding-top: 90px; }
 }
 .kzk-nav-mobile.is-open {
   opacity: 1;
@@ -246,6 +379,20 @@
   color: var(--accent-2);
   padding-left: 22px;
 }
+.kzk-nav-mobile-pay {
+  margin-top: 24px;
+  text-align: center;
+  padding: 16px 24px;
+  background: var(--grad-accent);
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 14px;
+  box-shadow: 0 10px 30px rgba(24, 161, 215, 0.3);
+}
+
 /* Responsive — at each breakpoint, only ONE nav is in display flow. */
 @media (max-width: 1100px) {
   .kzk-nav-links { display: none; }
@@ -255,4 +402,6 @@
 @media (max-width: 600px) {
   .kzk-nav-inner { padding: 0 20px; gap: 16px; }
   .kzk-nav-logo-text { display: none; }
+  .kzk-nav-pay { padding: 9px 16px; font-size: 11px; letter-spacing: 1px; }
+  .kzk-nav-pay svg { display: none; }
 }

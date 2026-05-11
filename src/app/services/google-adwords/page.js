@@ -2,7 +2,7 @@ import ServiceTemplate from "@/components/service-template/ServiceTemplate";
 import gaBanner from "../../../assets/images/services/google-award.jpg";
 
 export const metadata = {
-  title: "Google AdWords | KZK Services",
+  title: "Google AdWords",
   description:
     "Google Ads management — campaign strategy, conversion tracking, ad copy testing and ROAS-focused optimization for businesses across the USA.",
 };

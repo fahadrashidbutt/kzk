@@ -2,7 +2,7 @@ import ServiceTemplate from "@/components/service-template/ServiceTemplate";
 import dmBanner from "../../../assets/images/services/digital-marketing.jpg";
 
 export const metadata = {
-  title: "Digital Marketing | KZK Services",
+  title: "Digital Marketing",
   description:
     "Performance digital marketing — paid ads, social, email and content programs that move pipeline.",
 };

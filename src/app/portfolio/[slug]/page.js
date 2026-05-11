@@ -13,9 +13,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const portfolio = getPortfolioBySlug(slug);
-  if (!portfolio) return { title: "Portfolio | KZK Services" };
+  if (!portfolio) return { title: "Portfolio" };
   return {
-    title: `${portfolio.title} — Case Study | KZK Services`,
+    title: `${portfolio.title} — Case Study`,
     description: portfolio.about.slice(0, 160),
   };
 }

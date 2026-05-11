@@ -135,7 +135,9 @@
 
 /* Hero Title */
 .hero-title-large {
-  font-size: 5.5rem;
+  /* Clamped so the title never overflows on narrow viewports; the
+     existing 1024/768/480 step-downs still apply as caps. */
+  font-size: clamp(1.8rem, 6vw, 5.5rem);
   font-weight: 800;
   color: #fff;
   margin-bottom: 25px;
@@ -739,7 +741,23 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
+  /* Below the GSAP horizontal-scroll breakpoint: unpin the section and let
+     the project showcases stack vertically as normal scrollable content. */
+  .horizontal-section { background: #050810; }
+  .horizontal-container { height: auto; overflow: visible; }
+  .horizontal-sticky { height: auto; }
+  .horizontal-wrapper {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+  .project-showcase {
+    width: 100%;
+    height: auto;
+    padding: 80px 32px;
+  }
+
   .hero-title-large {
     font-size: 3.5rem;
   }

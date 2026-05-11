@@ -2,7 +2,7 @@ import ServiceTemplate from "@/components/service-template/ServiceTemplate";
 import wdBanner from "../../../assets/images/services/web-development.jpg";
 
 export const metadata = {
-  title: "Web Development | KZK Services",
+  title: "Web Development",
   description:
     "Custom websites and web apps engineered for speed, SEO and conversion — from marketing sites to complex platforms.",
 };

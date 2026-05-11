@@ -186,15 +186,24 @@
 }
 .kzk-footer-bigtype-text {
   display: inline-block;
-  font-size: clamp(3rem, 13vw, 11rem);
+  font-size: clamp(2.2rem, 13vw, 11rem);
   font-weight: 900;
   letter-spacing: -2px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+  /* Brighter top stop + lingering middle stop = the wordmark is legible
+     while still feeling like a watermark, not a hard headline. */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.32) 0%,
+    rgba(255, 255, 255, 0.18) 55%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   line-height: 1;
   position: relative;
+  /* Faint cyan glow underneath the wordmark to lift it off the dark bg */
+  text-shadow: 0 0 60px rgba(24, 161, 215, 0.18);
 }
 .kzk-footer-bigtype-x {
   background: var(--grad-accent);
@@ -203,6 +212,7 @@
   color: transparent;
   margin: 0 0.05em;
   font-weight: 900;
+  filter: drop-shadow(0 0 20px rgba(24, 161, 215, 0.45));
 }
 
 .kzk-footer-bottom {

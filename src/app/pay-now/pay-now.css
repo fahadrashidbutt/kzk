@@ -281,7 +281,10 @@
 }
 
 /* Responsive */
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
+  /* Below tablet-landscape: a single-column stack reads better than two
+     squeezed payment cards, and prevents the PayPal/Stripe widgets from
+     getting clipped in the cramped 2-col layout. */
   .pay-grid { grid-template-columns: 1fr; max-width: 600px; }
   .pay-features { grid-template-columns: repeat(2, 1fr); }
 }

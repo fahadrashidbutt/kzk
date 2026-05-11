@@ -5,7 +5,7 @@ import AboutUnique from "../../components/about-unique/AboutUnique";
 import FinalCta from "../../components/final-cta/FinalCta";
 
 export const metadata = {
-  title: "About Us | KZK Services",
+  title: "About Us",
   description:
     "KZK Services is a digital agency crafting websites, apps and growth strategies that deliver measurable results.",
 };

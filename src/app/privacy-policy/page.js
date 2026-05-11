@@ -2,7 +2,7 @@ import "../../assets/css/inner-pages.css";
 import "../../assets/css/legal.css";
 
 export const metadata = {
-  title: "Privacy Policy | KZK Services",
+  title: "Privacy Policy",
   description:
     "Privacy Policy for KZK Services — what information we collect, how we use it, and your rights under CCPA and GDPR.",
 };

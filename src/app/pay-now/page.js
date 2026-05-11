@@ -4,9 +4,10 @@ import "../../assets/css/inner-pages.css";
 import "./pay-now.css";
 import FinalCta from "../../components/final-cta/FinalCta";
 import PayPalButton from "../../components/paypal-button/PayPalButton";
+import StripeBuyButton from "../../components/stripe-buy-button/StripeBuyButton";
 
 export const metadata = {
-  title: "Pay Now | KZK Services",
+  title: "Pay Now",
   description:
     "Pay your KZK Services invoice securely online. We accept Visa, Mastercard, Maestro, American Express, PayPal and Venmo.",
 };
@@ -56,13 +57,10 @@ const features = [
 const Page = () => {
   return (
     <main className="ip-page pay-page">
-      <Script
-        src="https://js.stripe.com/v3/buy-button.js"
-        strategy="afterInteractive"
-      />
+      {/* Stripe script is now loaded inside StripeBuyButton itself */}
       <Script
         src="https://www.paypal.com/sdk/js?client-id=BAABawrVdZCo1kqver7uflmrDL6Vl4bpxcS7NmQooYssIRHlN30hx0_21uXsJYPRlE_sZNd-FvQDizyRL8&components=hosted-buttons&enable-funding=venmo&currency=USD"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
 
       {/* HERO */}
@@ -124,10 +122,10 @@ const Page = () => {
               </p>
 
               <div className="pay-stripe-wrap">
-                <stripe-buy-button
-                  buy-button-id="buy_btn_1SnJhVJEsQA2bcxNUa8aQc58"
-                  publishable-key="pk_live_51Shh3VJEsQA2bcxNFvMzjbHC1LBef6g26OgbCOcI1ltPV3EyC8PQ02pMwvtilfHRQqiMVtRBXvP9PKq8Mis50oJQ00XWO2cx2d"
-                ></stripe-buy-button>
+                <StripeBuyButton
+                  buyButtonId="buy_btn_1SnJhVJEsQA2bcxNUa8aQc58"
+                  publishableKey="pk_live_51Shh3VJEsQA2bcxNFvMzjbHC1LBef6g26OgbCOcI1ltPV3EyC8PQ02pMwvtilfHRQqiMVtRBXvP9PKq8Mis50oJQ00XWO2cx2d"
+                />
               </div>
             </div>
 

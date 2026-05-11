@@ -25,6 +25,7 @@ const Page = () => {
     service: services[0],
     budget: "",
     message: "",
+    website: "", // honeypot — bots fill it, humans don't
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
@@ -58,6 +59,7 @@ const Page = () => {
             _subject: `New project inquiry from ${form.name}`,
             _template: "table",
             _captcha: "false",
+            _honey: form.website || "",
           }),
         }
       );
@@ -177,6 +179,24 @@ const Page = () => {
                 </div>
               ) : (
                 <form className="contact-form" onSubmit={onSubmit}>
+                  {/* Honeypot — visually hidden, off the tab order, no
+                      autofill. Real users never fill it; bots usually do. */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={form.website}
+                    onChange={update("website")}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{
+                      position: "absolute",
+                      left: "-9999px",
+                      width: "1px",
+                      height: "1px",
+                      opacity: 0,
+                    }}
+                  />
                   <div className="contact-form-row">
                     <label className="contact-field">
                       <span>Full name *</span>
@@ -204,6 +224,8 @@ const Page = () => {
                       <span>Phone</span>
                       <input
                         type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
                         value={form.phone}
                         onChange={update("phone")}
                         placeholder="+1 (555) 555-5555"

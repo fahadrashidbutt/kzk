@@ -2,7 +2,7 @@ import ServiceTemplate from "@/components/service-template/ServiceTemplate";
 import adBanner from "../../../assets/images/services/app-development.jpg";
 
 export const metadata = {
-  title: "App Development | KZK Services",
+  title: "App Development",
   description:
     "Native and cross-platform mobile apps engineered for iOS and Android — from MVP to scaled product.",
 };

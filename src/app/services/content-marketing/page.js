@@ -2,7 +2,7 @@ import ServiceTemplate from "@/components/service-template/ServiceTemplate";
 import cmBanner from "../../../assets/images/services/content.jpg";
 
 export const metadata = {
-  title: "Content Marketing | KZK Services",
+  title: "Content Marketing",
   description:
     "Content marketing services in the USA — strategy, blog & editorial writing, social, email and SEO content that builds audience, authority and revenue.",
 };
@@ -107,8 +107,8 @@ const data = {
   stats: [
     { num: "500+", label: "Articles Published" },
     { num: "4×", label: "Avg Traffic Lift" },
-    { num: "200+", label: "Brands Served" },
-    { num: "95%", label: "Client Retention" },
+    { num: "90+", label: "Brands Served" },
+    { num: "98%", label: "Client Retention" },
   ],
   faqs: [
     {

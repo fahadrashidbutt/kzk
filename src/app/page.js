@@ -124,7 +124,7 @@ const yearsOfCraft = new Date().getFullYear() - FOUNDED_YEAR;
 const heroStats = [
   { num: "150+", label: "Projects Delivered" },
   { num: "4.9★", label: "Average Rating" },
-  { num: "98%", label: "Client Satisfaction" },
+  { num: "98%", label: "Client Retention" },
   { num: `${yearsOfCraft}+`, label: "Years Experience" },
   { num: "50+", label: "Experts on Team" },
 ];

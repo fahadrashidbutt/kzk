@@ -2,7 +2,7 @@ import ServiceTemplate from "@/components/service-template/ServiceTemplate";
 import seoBanner from "../../../assets/images/services/seo.jpg";
 
 export const metadata = {
-  title: "SEO Services | KZK Services",
+  title: "SEO Services",
   description:
     "Data-driven SEO that grows organic traffic, qualified leads and revenue — technical, on-page and off-page. Local, national and ecommerce SEO programs built to compound.",
 };
@@ -20,7 +20,7 @@ const data = {
     lead: "Search visibility that compounds —",
     accent: "month after month.",
     paragraphs: [
-      "SEO has changed. Stuffed keywords, thin pages, and bought-link networks don't move the needle anymore — and Google's helpful-content and spam updates have actively penalized them. What works in 2026: technically clean sites with strong Core Web Vitals, content that actually answers a searcher's question better than anything else on the SERP, and authority earned through real digital PR, partnerships, and original research that other people want to cite.",
+      "SEO has changed. Stuffed keywords, thin pages, and bought-link networks don't move the needle anymore — and Google's helpful-content and spam updates have actively penalized them. What works now: technically clean sites with strong Core Web Vitals, content that actually answers a searcher's question better than anything else on the SERP, and authority earned through real digital PR, partnerships, and original research that other people want to cite.",
       "We run SEO as an integrated program — technical, on-page, content, and off-page — so the work compounds instead of stalling out after the first few wins. Your dedicated team includes a senior SEO strategist, a technical SEO engineer, an in-house content team, and an outreach specialist. You get a single point of contact and one monthly report that ties everything to revenue, not just rank tracking.",
       "Whether you're a local service business trying to win the map pack, an ecommerce brand fighting for category-page rankings, or a B2B SaaS company chasing high-intent keywords — our playbook adapts. Every engagement starts with a 60-point technical and content audit so we know exactly where the leverage is before we spend a dollar of your budget.",
     ],

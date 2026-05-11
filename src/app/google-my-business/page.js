@@ -7,7 +7,7 @@ import gmbHero from "../../assets/images/google-my-business/gmb-banner.jpg";
 import gmbGuide from "../../assets/images/google-my-business/Google-My-Business-vec.jpg";
 
 export const metadata = {
-  title: "Google Business Profile Services in the USA | KZK Services",
+  title: "Google Business Profile Services in the USA",
   description:
     "Local-pack rankings, review velocity, and Maps visibility done right. KZK Services optimizes Google Business Profile, manages your listings, and grows local SEO across the USA.",
 };
@@ -20,7 +20,7 @@ const features = [
       </svg>
     ),
     title: "Fast Service With Expert Team",
-    text: "In terms of marketing your business, our experience speaks for itself. Plus, we do the Google My Business service in a flash and update the listing without wasting a single second.",
+    text: "When it comes to marketing your local business, our experience speaks for itself. We deliver Google Business Profile work quickly and keep your listing updated without delays.",
   },
   {
     icon: (
@@ -65,7 +65,7 @@ const strategies = [
         <polyline points="22 4 12 14.01 9 11.01" />
       </svg>
     ),
-    text: "To make your local business reputation among the number of businesses, we complete every element of your GMB profile. This strategy will increase the visit of customers by 70% at your location.",
+    text: "To build your local business reputation against competing listings, we complete every element of your GBP profile — a strategy that lifts foot-traffic visits by up to 70%.",
   },
   {
     icon: (
@@ -84,7 +84,7 @@ const strategies = [
         <line x1="21" y1="21" x2="16.65" y2="16.65" />
       </svg>
     ),
-    text: "To boost the search ranking of your local business, we do the strategy of adding the relevant keyword by selecting them from the keyword planner, Google Analytics, and Google Trends.",
+    text: "To boost the local search ranking of your business, we add the relevant keywords — selected from Keyword Planner, Google Analytics and Google Trends — and weave them in naturally.",
   },
   {
     icon: (
@@ -92,14 +92,14 @@ const strategies = [
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
       </svg>
     ),
-    text: "To make your brand trustworthy, we use the way of responding to reviews and adding feedback to show your business legitimacy.",
+    text: "To make your brand trustworthy, we respond to every review and act on feedback to reinforce your business's legitimacy.",
   },
 ];
 
 const steps = [
   {
     title: "Market Analysis",
-    text: "To completely understand your business niche and competitor, we do in-depth research and make a top-notch marketing campaign. We do this step to help you to get more leads from your website and get more revenue.",
+    text: "To fully understand your niche and competitors, we do in-depth research and build a top-notch marketing campaign. This step helps you get more leads from your website and grow revenue.",
   },
   {
     title: "Compile Strategies & Listing",
@@ -111,11 +111,11 @@ const steps = [
   },
   {
     title: "Maintain & Off-Page SEO",
-    text: "After optimizing the GMB list, we manage it by adding reviews, giving feedback on reviews, and replying to messages. Then we move to off-page SEO by inserting backlinks to make a strong online visibility.",
+    text: "After optimizing the GBP listing, we maintain it through review responses and message replies, then build off-page authority with quality backlinks for stronger online visibility.",
   },
   {
     title: "Cross-Analysis For More Leads",
-    text: "Lastly, we focus on increasing conversion and return on investment by cross-checking our campaign and doing testing to enhance the traffic. For this, we keep on visiting further and find new ways.",
+    text: "Lastly, we focus on increasing conversions and return on investment by cross-checking our campaigns and running tests to lift traffic. We continuously revisit the data and uncover new ways to lift performance.",
   },
 ];
 
@@ -232,8 +232,8 @@ export default function GoogleMyBusinessPage() {
             <div className="gmb-why-main">
               <span className="ip-section-tag">Why Choose KZK</span>
               <h2 className="gmb-why-title">
-                Why Choose KZK For Google My Business{" "}
-                <span className="ip-grad">Services In USA?</span>
+                Why Choose KZK For Google Business Profile{" "}
+                <span className="ip-grad">Services In The USA?</span>
               </h2>
               <p className="gmb-why-text">
                 KZK Services is a leader in delivering affordable, effective
@@ -319,10 +319,10 @@ export default function GoogleMyBusinessPage() {
               <span className="ip-grad">Optimization</span>
             </h2>
             <p className="ip-section-text">
-              To give you more insights into the expertise of KZK Google My
-              Business services in USA, here we share our cutting-edge
-              techniques for optimizing the GMB profile to maximize your
-              conversions and make your brand identity:
+              To give you more insights into KZK's Google Business Profile
+              expertise across the USA, here we share our cutting-edge
+              techniques for optimizing GBP profiles to maximize conversions
+              and strengthen your brand identity:
             </p>
           </div>
 
