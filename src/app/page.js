@@ -489,6 +489,16 @@ export default function Home() {
                 We&apos;ll lift your rankings and revenue without you spending
                 a penny on a new website. Our track record speaks for itself.
               </p>
+              <p className="kzk-section-text">
+                Every SEO program at KZK starts with a 60-point technical and
+                content audit, then unfolds across four integrated workstreams
+                — technical, on-page, content and off-page — so the work
+                compounds instead of stalling out after the first few wins.
+                You get a dedicated senior strategist, real reporting tied to
+                revenue, and a 12-month roadmap you sign off before we spend
+                a single dollar of your budget.
+              </p>
+
               <ul className="kzk-seo-bullets">
                 <li>
                   <span className="kzk-seo-bullet-check">
@@ -496,9 +506,10 @@ export default function Home() {
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
-                  We use the latest tools to build your brand awareness, drive
-                  web traffic and grow overall sales by connecting you with
-                  the customers in the best way.
+                  Latest-generation tooling — Ahrefs, SEMrush, Search Console,
+                  Screaming Frog and Looker Studio — to build awareness, drive
+                  traffic and grow revenue in the way your customers actually
+                  search.
                 </li>
                 <li>
                   <span className="kzk-seo-bullet-check">
@@ -506,10 +517,48 @@ export default function Home() {
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
-                  We analyze the competitors and come up with the best
-                  strategy to retain your rank on top.
+                  Competitor gap analysis that maps every ranked keyword,
+                  backlink and content asset of your top three rivals — so we
+                  know exactly where to attack and where to defend.
+                </li>
+                <li>
+                  <span className="kzk-seo-bullet-check">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  Technical hygiene that Google actually rewards: clean
+                  crawl, valid schema, sub-second Core Web Vitals and a
+                  rendering-friendly stack.
+                </li>
+                <li>
+                  <span className="kzk-seo-bullet-check">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  Monthly reporting that ties organic traffic, qualified
+                  leads and revenue to specific work done — no vanity
+                  rank-tracker screenshots, no black-box dashboards.
                 </li>
               </ul>
+
+              {/* Outcome stats — pulled from real client averages */}
+              <div className="kzk-seo-metrics">
+                <div className="kzk-seo-metric">
+                  <div className="kzk-seo-metric-num">300%</div>
+                  <div className="kzk-seo-metric-label">Avg Traffic Lift</div>
+                </div>
+                <div className="kzk-seo-metric">
+                  <div className="kzk-seo-metric-num">6–12 mo</div>
+                  <div className="kzk-seo-metric-label">ROI Window</div>
+                </div>
+                <div className="kzk-seo-metric">
+                  <div className="kzk-seo-metric-num">Top 3</div>
+                  <div className="kzk-seo-metric-label">Ranking Target</div>
+                </div>
+              </div>
+
               <Link href="/services/seo" className="kzk-btn-primary kzk-btn-hero">
                 Explore SEO Service
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

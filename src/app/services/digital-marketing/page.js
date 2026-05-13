@@ -1,5 +1,99 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import ServiceEducation from "@/components/service-education/ServiceEducation";
 import dmBanner from "../../../assets/images/services/digital-marketing.jpg";
+
+const educationData = {
+  title: "How Digital Marketing Works —",
+  titleAccent: "and Why It Matters",
+  lead: "Every campaign at KZK runs the same four-phase loop: audit, plan, launch and scale. We pair real performance data with creative testing so spend turns into pipeline — not just impressions.",
+  steps: [
+    {
+      title: "Audit",
+      short: "Audit",
+      text: "Deep dive into your current funnel, channels, creative and reporting. We diagnose where leads are leaking, what's working, and where the biggest leverage points sit.",
+    },
+    {
+      title: "Plan",
+      short: "Plan",
+      text: "Channel mix and budget allocation tied to CAC and LTV targets. Creative testing matrix, landing-page strategy and a measurement plan with attribution baked in.",
+    },
+    {
+      title: "Launch",
+      short: "Launch",
+      text: "Campaigns go live across paid social, paid search, email and remarketing. Every variant is tagged and tracked so we know exactly which combination is winning.",
+    },
+    {
+      title: "Scale",
+      short: "Scale",
+      text: "Double down on winners, cut losers fast, and keep iterating on creative and audiences. Monthly reports tie ad spend to revenue, not just clicks.",
+    },
+  ],
+  benefitsTitle: "Six reasons digital marketing is",
+  benefitsTitleAccent: "the fastest path to predictable growth",
+  benefits: [
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 11l18-5v12L3 14v-3z" />
+          <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+        </svg>
+      ),
+      title: "Audience Precision",
+      text: "Meta, Google and TikTok let you target by intent, behavior and look-alikes — wasted spend on the wrong audience drops to near zero.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      ),
+      title: "Real-Time Optimization",
+      text: "Daily bid, audience and creative adjustments. Campaigns that aren't working get cut in days — not after a quarterly review.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10" />
+          <line x1="12" y1="20" x2="12" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="14" />
+        </svg>
+      ),
+      title: "Measurable ROAS",
+      text: "Server-side conversion tracking, GA4 attribution and Looker Studio dashboards show exactly which dollar drove which result.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      ),
+      title: "Lower CAC Over Time",
+      text: "Better creative + tighter targeting + smarter landing pages compound — most KZK clients see CAC drop 30-50% over the first six months.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M2 12h20" />
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
+      ),
+      title: "Cross-Channel Reach",
+      text: "Paid social, paid search, email, SMS and remarketing all working together — buyers see the right message at the right moment in their journey.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+          <polyline points="22 4 12 14.01 9 11.01" />
+        </svg>
+      ),
+      title: "Brand & Performance Together",
+      text: "We don't make you choose. Top-of-funnel awareness and bottom-of-funnel conversion campaigns run side by side — building the brand while moving the pipeline.",
+    },
+  ],
+};
 
 export const metadata = {
   title: "Digital Marketing",
@@ -78,5 +172,9 @@ const data = {
 };
 
 export default function Page() {
-  return <ServiceTemplate data={data} />;
+  return (
+    <ServiceTemplate data={data}>
+      <ServiceEducation data={educationData} />
+    </ServiceTemplate>
+  );
 }

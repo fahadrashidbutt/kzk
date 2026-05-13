@@ -1,5 +1,102 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import ServiceEducation from "@/components/service-education/ServiceEducation";
 import adBanner from "../../../assets/images/services/app-development.jpg";
+
+const educationData = {
+  title: "How App Development Works —",
+  titleAccent: "and Why It Matters",
+  lead: "A 5★-rated app is the output of a disciplined four-phase cycle: strategy → design → build & test → launch & care. Every screen, every transition and every push notification gets the same level of craft.",
+  steps: [
+    {
+      title: "Strategy",
+      short: "Strategy",
+      text: "User-flow mapping, feature prioritization and a clear MVP scope. We decide together what ships in v1 — and what's deferred — so we never over-build before product-market fit.",
+    },
+    {
+      title: "Design",
+      short: "Design",
+      text: "Native iOS and Android design language done right. Every screen prototyped in Figma, every interaction storyboarded. You approve the look and feel before we touch code.",
+    },
+    {
+      title: "Build & Test",
+      short: "Build & Test",
+      text: "React Native or full native Swift / Kotlin builds, automated test suites, beta builds in TestFlight and Play Console. You and your stakeholders click around the real app weekly.",
+    },
+    {
+      title: "Launch & Care",
+      short: "Launch & Care",
+      text: "Store submission, day-one monitoring with Sentry, OTA updates and an ongoing care plan covering crash analytics, store re-submissions and feature releases.",
+    },
+  ],
+  benefitsTitle: "Six reasons a custom mobile app is",
+  benefitsTitleAccent: "still the strongest engagement channel",
+  benefits: [
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+          <line x1="12" y1="18" x2="12.01" y2="18" />
+        </svg>
+      ),
+      title: "Native Feel, Cross-Platform Reach",
+      text: "React Native (or native Swift/Kotlin where it matters) means one codebase ships to both stores while every gesture and animation still feels native.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+          <line x1="6" y1="1" x2="6" y2="4" />
+          <line x1="10" y1="1" x2="10" y2="4" />
+          <line x1="14" y1="1" x2="14" y2="4" />
+        </svg>
+      ),
+      title: "Push & Re-engagement",
+      text: "Push notifications, deep links and in-app messaging let you re-engage users where email can't reach — typically lifting retention by 40-60%.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" />
+          <path d="M9 12l2 2 4-4" />
+        </svg>
+      ),
+      title: "Crash-Free Stability",
+      text: "Sentry crash reporting, automated test coverage and OTA hotfixes keep your App Store rating in 4.7★+ territory year after year.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      ),
+      title: "Offline-First Reliability",
+      text: "Smart caching and offline data sync so your app keeps working in dead zones — train tunnels, basements, anywhere your users actually live.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="12" y1="1" x2="12" y2="23" />
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+        </svg>
+      ),
+      title: "Monetization Built In",
+      text: "In-app purchases, subscriptions, RevenueCat integration, ad placements or all of the above — wired in cleanly, tracked properly, billed reliably.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10" />
+          <line x1="12" y1="20" x2="12" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="14" />
+        </svg>
+      ),
+      title: "Analytics & Iteration",
+      text: "Funnel tracking, feature flags and A/B tests baked in. Every release is informed by real user behavior, not opinions in a meeting room.",
+    },
+  ],
+};
 
 export const metadata = {
   title: "App Development",
@@ -78,5 +175,9 @@ const data = {
 };
 
 export default function Page() {
-  return <ServiceTemplate data={data} />;
+  return (
+    <ServiceTemplate data={data}>
+      <ServiceEducation data={educationData} />
+    </ServiceTemplate>
+  );
 }

@@ -1,4 +1,5 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import SeoEducation from "@/components/seo-education/SeoEducation";
 import seoBanner from "../../../assets/images/services/seo.jpg";
 
 export const metadata = {
@@ -148,5 +149,9 @@ const data = {
 };
 
 export default function Page() {
-  return <ServiceTemplate data={data} />;
+  return (
+    <ServiceTemplate data={data}>
+      <SeoEducation />
+    </ServiceTemplate>
+  );
 }

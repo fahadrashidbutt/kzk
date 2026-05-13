@@ -10,7 +10,7 @@ const ArrowIcon = () => (
   </svg>
 );
 
-const ServiceTemplate = ({ data }) => {
+const ServiceTemplate = ({ data, children }) => {
   const {
     badge,
     subtitle,
@@ -160,6 +160,11 @@ const ServiceTemplate = ({ data }) => {
           </div>
         </div>
       </section>
+
+      {/* OPTIONAL CUSTOM SECTION — service pages can drop in extra content
+          (e.g. the SEO page's "How It Works + Benefits + Video" block)
+          right here, between Work Process and FAQ. */}
+      {children}
 
       {/* FAQ */}
       {faqs && faqs.length > 0 && (

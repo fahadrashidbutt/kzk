@@ -1,5 +1,99 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import ServiceEducation from "@/components/service-education/ServiceEducation";
 import wdBanner from "../../../assets/images/services/web-development.jpg";
+
+const educationData = {
+  title: "How Web Development Works —",
+  titleAccent: "and Why It Matters",
+  lead: "A great website isn't shipped in a single sprint. It's the output of a disciplined four-phase cycle — discovery, design, build and launch — that we run on every engagement, from a five-page marketing site to a full SaaS product.",
+  steps: [
+    {
+      title: "Discover",
+      short: "Discover",
+      text: "Goal-setting workshop, audience and competitor research, technical audit of any existing site. We leave with a clear definition of done and a measurable success target.",
+    },
+    {
+      title: "Design",
+      short: "Design",
+      text: "Wireframes → high-fidelity prototype in Figma. You see every page before a line of code is written, with conversion-focused layouts and a design system you can keep using.",
+    },
+    {
+      title: "Build",
+      short: "Build",
+      text: "Modern Next.js + React + Node stack, weekly demos and full QA across browsers and devices. You watch the site come to life in real time, in a staging environment you can click around.",
+    },
+    {
+      title: "Launch & Grow",
+      short: "Launch & Grow",
+      text: "Deploy to edge hosting, integrate analytics, and stay engaged after launch with monitoring, A/B tests and continuous-improvement sprints.",
+    },
+  ],
+  benefitsTitle: "Six reasons modern web development is",
+  benefitsTitleAccent: "the highest-leverage investment you'll make",
+  benefits: [
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      ),
+      title: "Speed That Converts",
+      text: "Every 100ms of load-time cut lifts conversion by ~1%. Edge-rendered, image-optimized builds hit sub-second loads on real-world devices and networks.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      ),
+      title: "Built-In SEO",
+      text: "Semantic HTML, structured data, automatic sitemaps and 100/100 Lighthouse SEO scores by default — your content earns its place in search results.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <line x1="3" y1="9" x2="21" y2="9" />
+          <line x1="9" y1="21" x2="9" y2="9" />
+        </svg>
+      ),
+      title: "Easy to Update",
+      text: "Headless CMS (Sanity, Contentful or Strapi) means your marketing team publishes pages, blog posts and campaigns without filing developer tickets.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+          <polyline points="22 4 12 14.01 9 11.01" />
+        </svg>
+      ),
+      title: "Conversion-Focused",
+      text: "Every layout, headline and CTA is designed around the action you want a visitor to take — not just looking good in a portfolio shot.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" />
+          <path d="M9 12l2 2 4-4" />
+        </svg>
+      ),
+      title: "Secure & Reliable",
+      text: "Automated dependency updates, HTTPS everywhere, CSP headers and 99.99% uptime hosting — no late-night incident calls.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10" />
+          <line x1="12" y1="20" x2="12" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="14" />
+        </svg>
+      ),
+      title: "Scalable Foundation",
+      text: "Cloud-native architecture that grows with your traffic, your content library and your team — without a rebuild every two years.",
+    },
+  ],
+};
 
 export const metadata = {
   title: "Web Development",
@@ -138,5 +232,9 @@ const data = {
 };
 
 export default function Page() {
-  return <ServiceTemplate data={data} />;
+  return (
+    <ServiceTemplate data={data}>
+      <ServiceEducation data={educationData} />
+    </ServiceTemplate>
+  );
 }

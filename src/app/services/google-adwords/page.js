@@ -1,5 +1,100 @@
 import ServiceTemplate from "@/components/service-template/ServiceTemplate";
+import ServiceEducation from "@/components/service-education/ServiceEducation";
 import gaBanner from "../../../assets/images/services/google-award.jpg";
+
+const educationData = {
+  title: "How Google Ads Works —",
+  titleAccent: "and Why It Matters",
+  lead: "Profitable Google Ads is a discipline, not a launch button. We run a tight four-phase cycle: setup, launch, optimize, scale — with every dollar tied back to a conversion and every campaign reviewed weekly.",
+  steps: [
+    {
+      title: "Setup",
+      short: "Setup",
+      text: "Account audit (or fresh build), conversion tracking via GA4 + server-side, keyword research, negative-keyword library and ad copy testing matrix all locked in before launch.",
+    },
+    {
+      title: "Launch",
+      short: "Launch",
+      text: "Campaigns go live across Search, Performance Max, Shopping or YouTube — whichever the data says wins fastest. Every ad group structured for clear cost-per-conversion tracking.",
+    },
+    {
+      title: "Optimize",
+      short: "Optimize",
+      text: "Daily bid adjustments, weekly creative iteration, search-term mining and negative-keyword pruning. Bad placements get cut in days, not after a quarterly review.",
+    },
+    {
+      title: "Scale",
+      short: "Scale",
+      text: "Once cost-per-conversion is below target, we scale budget and explore adjacent keywords, audiences and channels — protecting ROAS as spend grows.",
+    },
+  ],
+  benefitsTitle: "Six reasons Google Ads is",
+  benefitsTitleAccent: "the fastest way to fill your pipeline",
+  benefits: [
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      ),
+      title: "Immediate Traffic",
+      text: "SEO takes months. Google Ads delivers qualified buyers searching for your service the moment a campaign launches — same day.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      ),
+      title: "Pure Buying Intent",
+      text: "Search-ads visitors are actively looking to buy. No demographic guessing — just \"someone typed exactly what I sell into Google.\"",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10" />
+          <line x1="12" y1="20" x2="12" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="14" />
+        </svg>
+      ),
+      title: "Granular Control",
+      text: "Budgets, bids, ad copy, audiences and placements — all adjustable in real time. No black-box decisions; every dial is yours to turn.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+          <polyline points="22 4 12 14.01 9 11.01" />
+        </svg>
+      ),
+      title: "Transparent ROAS",
+      text: "Server-side conversion tracking shows exact revenue per ad dollar. Reports tie every campaign to bottom-line impact, not just clicks.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M2 12h20" />
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
+      ),
+      title: "Geo-Targeted Reach",
+      text: "Run a campaign in a single zip code or 20 countries — the same dashboard handles both. Perfect for local services and national brands alike.",
+    },
+    {
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <line x1="9" y1="9" x2="15" y2="9" />
+          <line x1="9" y1="15" x2="15" y2="15" />
+        </svg>
+      ),
+      title: "Fast A/B Iteration",
+      text: "Ad copy, landing pages and offers tested side-by-side every week. Winners win bigger, losers get cut — the program compounds month over month.",
+    },
+  ],
+};
 
 export const metadata = {
   title: "Google AdWords",
@@ -132,5 +227,9 @@ const data = {
 };
 
 export default function Page() {
-  return <ServiceTemplate data={data} />;
+  return (
+    <ServiceTemplate data={data}>
+      <ServiceEducation data={educationData} />
+    </ServiceTemplate>
+  );
 }
